@@ -1,14 +1,15 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-  
+
   /// Assets for imagesDiscoveryDark
   /// assets/images/discovery_dark.svg
   static const String imagesDiscoveryDark = "assets/images/discovery_dark.svg";
 
   /// Assets for imagesDiscoveryLight
   /// assets/images/discovery_light.svg
-  static const String imagesDiscoveryLight = "assets/images/discovery_light.svg";
+  static const String imagesDiscoveryLight =
+      "assets/images/discovery_light.svg";
 
   /// Assets for imagesFavouriteDark
   /// assets/images/favourite_dark.svg
@@ -16,7 +17,8 @@ class Assets {
 
   /// Assets for imagesFavouriteLight
   /// assets/images/favourite_light.svg
-  static const String imagesFavouriteLight = "assets/images/favourite_light.svg";
+  static const String imagesFavouriteLight =
+      "assets/images/favourite_light.svg";
 
   /// Assets for imagesHeartDark
   /// assets/images/heart_dark.svg
@@ -93,5 +95,8 @@ class Assets {
   /// Assets for imagesSun
   /// assets/images/sun.svg
   static const String imagesSun = "assets/images/sun.svg";
-}
 
+  /// Assets for imagesVector
+  /// assets/images/Vector.svg
+  static const String imagesLogo = "assets/images/logo.svg";
+}

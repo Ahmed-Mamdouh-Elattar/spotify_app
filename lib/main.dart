@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spotify_app/core/configs/app_themes.dart';
+import 'package:spotify_app/features/splash_view/presentation/views/splash_view.dart';
 
 void main() {
   runApp(const SpotifyApp());
@@ -12,6 +13,7 @@ class SpotifyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: AppThemes.darkTheme,
+      home: const SplashView(),
     );
   }
 }
