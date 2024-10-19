@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spotify_app/core/configs/app_text_style.dart';
 import 'package:spotify_app/core/configs/assets.dart';
+import 'package:spotify_app/core/utils/app_navigation.dart';
 import 'package:spotify_app/core/widgets/custom_elevated_button.dart';
+import 'package:spotify_app/features/auth/presentation/views/register_or_sign_in_view.dart';
 
 import 'package:spotify_app/features/choose_mode/presentation/views/widgets/choose_theme.dart';
 
@@ -47,7 +49,12 @@ class ChooseModeViewBody extends StatelessWidget {
                   height: 70,
                 ),
                 CustomElevatedBudtton(
-                  onPressed: () {},
+                  onPressed: () {
+                    AppNavigation.pushWithSlidingAnimation(
+                      context: context,
+                      view: const RegisterOrSignInView(),
+                    );
+                  },
                   text: Text(
                     "Continue",
                     style: AppTextStyle.styleBold22().copyWith(

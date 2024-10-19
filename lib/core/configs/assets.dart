@@ -6,6 +6,10 @@ class Assets {
   /// assets/images/alafasy.png
   static const String imagesAlafasy = "assets/images/alafasy.png";
 
+  /// Assets for imagesBottomCurvedLines
+  /// assets/images/bottom_curved_lines.svg
+  static const String imagesBottomCurvedLines = "assets/images/bottom_curved_lines.svg";
+
   /// Assets for imagesDiscoveryDark
   /// assets/images/discovery_dark.svg
   static const String imagesDiscoveryDark = "assets/images/discovery_dark.svg";
@@ -105,5 +109,9 @@ class Assets {
   /// Assets for imagesSun
   /// assets/images/sun.svg
   static const String imagesSun = "assets/images/sun.svg";
+
+  /// Assets for imagesTopCurvedLines
+  /// assets/images/top_curved_lines.svg
+  static const String imagesTopCurvedLines = "assets/images/top_curved_lines.svg";
 }
 
