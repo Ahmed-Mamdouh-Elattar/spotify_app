@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spotify_app/core/configs/app_text_style.dart';
 import 'package:spotify_app/core/configs/assets.dart';
 import 'package:spotify_app/core/widgets/custom_elevated_button.dart';
+import 'package:spotify_app/features/choose_mode/presentation/manager/choose_mode_cubit/choose_mode_cubit.dart';
 import 'package:spotify_app/features/choose_mode/presentation/views/widgets/blur_container.dart';
+import 'package:spotify_app/features/choose_mode/presentation/views/widgets/choose_theme.dart';
 
 class ChooseModeViewBody extends StatelessWidget {
   const ChooseModeViewBody({super.key});
@@ -40,22 +43,7 @@ class ChooseModeViewBody extends StatelessWidget {
                 const SizedBox(
                   height: 32,
                 ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    BlurContainer(
-                      image: Assets.imagesMoon,
-                      title: "Dark Mode",
-                    ),
-                    SizedBox(
-                      width: 71,
-                    ),
-                    BlurContainer(
-                      image: Assets.imagesSun,
-                      title: "Light Mode",
-                    ),
-                  ],
-                ),
+                const ChooseTheme(),
                 const SizedBox(
                   height: 70,
                 ),
