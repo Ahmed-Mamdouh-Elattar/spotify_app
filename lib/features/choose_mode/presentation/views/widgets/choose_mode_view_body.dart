@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spotify_app/core/configs/app_text_style.dart';
 import 'package:spotify_app/core/configs/assets.dart';
 import 'package:spotify_app/core/widgets/custom_elevated_button.dart';
-import 'package:spotify_app/features/choose_mode/presentation/manager/choose_mode_cubit/choose_mode_cubit.dart';
-import 'package:spotify_app/features/choose_mode/presentation/views/widgets/blur_container.dart';
+
 import 'package:spotify_app/features/choose_mode/presentation/views/widgets/choose_theme.dart';
 
 class ChooseModeViewBody extends StatelessWidget {
