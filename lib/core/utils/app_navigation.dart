@@ -39,8 +39,8 @@ class AppNavigation {
   static pushWithSlidingAnimation({
     required BuildContext context,
     required Widget view,
-    Duration reverseTransitionDuration = const Duration(milliseconds: 300),
-    Duration transitionDuratio = const Duration(milliseconds: 300),
+    Duration reverseTransitionDuration = const Duration(milliseconds: 200),
+    Duration transitionDuratio = const Duration(milliseconds: 200),
   }) {
     Navigator.push(
       context,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:spotify_app/core/configs/app_text_style.dart';
 import 'package:spotify_app/core/configs/assets.dart';
-import 'package:spotify_app/core/helper/is_dark_theme_extention.dart';
+import 'package:spotify_app/core/helper/constants.dart';
 import 'package:spotify_app/core/utils/app_navigation.dart';
 import 'package:spotify_app/core/widgets/custom_app_bar.dart';
 
@@ -24,14 +24,11 @@ class RegisterOrSignInViewBody extends StatelessWidget {
           child: SvgPicture.asset(Assets.imagesBottomCurvedLines),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
+          padding: const EdgeInsets.symmetric(horizontal: kPadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CustomAppBar(
-                color: context.isDarkTheme
-                    ? Colors.white.withOpacity(0.03)
-                    : const Color(0xff000000).withOpacity(0.04),
                 prefixIcon: Icons.arrow_back_ios_new,
                 onPressedPrefixIcon: () {
                   AppNavigation.pop(context);

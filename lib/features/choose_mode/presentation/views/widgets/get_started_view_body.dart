@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:spotify_app/core/configs/app_text_style.dart';
 import 'package:spotify_app/core/configs/assets.dart';
+import 'package:spotify_app/core/helper/constants.dart';
 import 'package:spotify_app/core/utils/app_navigation.dart';
 import 'package:spotify_app/core/widgets/custom_elevated_button.dart';
 import 'package:spotify_app/features/choose_mode/presentation/views/choose_mode_view.dart';
@@ -28,7 +29,7 @@ class GetStartedViewBody extends StatelessWidget {
         Container(
           color: Colors.black.withOpacity(0.3),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
+            padding: const EdgeInsets.symmetric(horizontal: kPadding),
             child: Column(
               children: [
                 const SizedBox(

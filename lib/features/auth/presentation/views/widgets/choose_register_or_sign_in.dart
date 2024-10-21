@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:spotify_app/core/configs/app_text_style.dart';
 import 'package:spotify_app/core/helper/is_dark_theme_extention.dart';
+import 'package:spotify_app/core/utils/app_navigation.dart';
 import 'package:spotify_app/core/widgets/custom_elevated_button.dart';
+import 'package:spotify_app/features/auth/presentation/views/register_view.dart';
+import 'package:spotify_app/features/auth/presentation/views/sign_in_view.dart';
 
 class ChooseRegisterOrSignIn extends StatelessWidget {
   const ChooseRegisterOrSignIn({
@@ -16,11 +19,14 @@ class ChooseRegisterOrSignIn extends StatelessWidget {
           child: CustomElevatedBudtton(
             text: Text(
               "Register",
-              style: AppTextStyle.styleMedium19().copyWith(
-                color: Colors.white,
-              ),
+              style: AppTextStyle.styleMedium19().copyWith(),
             ),
-            onPressed: () {},
+            onPressed: () {
+              AppNavigation.pushWithSlidingAnimation(
+                context: context,
+                view: const RegisterView(),
+              );
+            },
           ),
         ),
         const SizedBox(
@@ -28,7 +34,12 @@ class ChooseRegisterOrSignIn extends StatelessWidget {
         ),
         Expanded(
           child: CustomElevatedBudtton(
-            onPressed: () {},
+            onPressed: () {
+              AppNavigation.pushWithSlidingAnimation(
+                context: context,
+                view: const SignInView(),
+              );
+            },
             color: Colors.transparent,
             text: Text(
               "Sign In",
