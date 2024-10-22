@@ -7,7 +7,6 @@ import 'package:spotify_app/core/utils/app_navigation.dart';
 import 'package:spotify_app/core/widgets/custom_app_bar.dart';
 import 'package:spotify_app/core/widgets/custom_elevated_button.dart';
 import 'package:spotify_app/features/auth/presentation/views/register_view.dart';
-import 'package:spotify_app/features/auth/presentation/views/sign_in_view.dart';
 import 'package:spotify_app/features/auth/presentation/views/widgets/custom_text_form_field.dart';
 
 class SignInViewBody extends StatelessWidget {
