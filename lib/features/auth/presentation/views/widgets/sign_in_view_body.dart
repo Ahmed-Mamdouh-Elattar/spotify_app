@@ -1,89 +1,126 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:spotify_app/core/configs/app_text_style.dart';
-import 'package:spotify_app/core/configs/assets.dart';
-import 'package:spotify_app/core/helper/constants.dart';
-import 'package:spotify_app/core/utils/app_navigation.dart';
-import 'package:spotify_app/core/widgets/custom_app_bar.dart';
-import 'package:spotify_app/core/widgets/custom_elevated_button.dart';
-import 'package:spotify_app/features/auth/presentation/views/register_view.dart';
-import 'package:spotify_app/features/auth/presentation/views/widgets/custom_text_form_field.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-class SignInViewBody extends StatelessWidget {
+import 'package:spotify_app/core/configs/app_text_style.dart';
+
+import 'package:spotify_app/core/helper/constants.dart';
+import 'package:spotify_app/core/helper/show_snack_bar.dart';
+import 'package:spotify_app/core/helper/validate_email.dart';
+import 'package:spotify_app/core/helper/validate_password.dart';
+import 'package:spotify_app/core/utils/app_navigation.dart';
+
+import 'package:spotify_app/core/widgets/custom_elevated_button.dart';
+import 'package:spotify_app/features/auth/presentation/managers/sign_in/sign_in_cubit.dart';
+import 'package:spotify_app/features/auth/presentation/views/register_view.dart';
+import 'package:spotify_app/features/auth/presentation/views/widgets/ask_with_text_button.dart';
+import 'package:spotify_app/features/auth/presentation/views/widgets/custom_text_form_field.dart';
+import 'package:spotify_app/features/auth/presentation/views/widgets/password_text_form_field.dart';
+import 'package:spotify_app/features/home/presentation/views/home_view.dart';
+
+class SignInViewBody extends StatefulWidget {
   const SignInViewBody({super.key});
 
   @override
+  State<SignInViewBody> createState() => _SignInViewBodyState();
+}
+
+class _SignInViewBodyState extends State<SignInViewBody> {
+  late String email, password;
+  GlobalKey<FormState> formKey = GlobalKey();
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kPadding),
-      child: Column(
-        children: [
-          CustomAppBar(
-            onPressedPrefixIcon: () => AppNavigation.pop(context),
-            prefixIcon: Icons.arrow_back_ios_new,
-            centerWidget: SizedBox(
-              height: 33,
-              child: SvgPicture.asset(Assets.imagesLogo),
-            ),
-          ),
-          const SizedBox(
-            height: 47,
-          ),
-          Text(
-            "Sign In",
-            style: AppTextStyle.styleBold30(),
-          ),
-          const SizedBox(
-            height: 50,
-          ),
-          const CustomTextFormField(
-            hintText: "Enter Username Or Email",
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          const CustomTextFormField(
-            hintText: "Password",
-          ),
-          const SizedBox(
-            height: 33,
-          ),
-          CustomElevatedBudtton(
-            onPressed: () {},
-            text: Text(
-              "Sign In",
-              style: AppTextStyle.styleBold20(),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.baseline,
-            textBaseline: TextBaseline.alphabetic,
-            children: [
-              Text(
-                "Not A Member?",
-                style: AppTextStyle.styleMedium14(),
+    return BlocConsumer<SignInCubit, SignInState>(
+      listener: (context, state) {
+        if (state is SignInFailure) {
+          showSnackBar(context, content: state.errMessage);
+        } else if (state is SignInSucceeded) {
+          AppNavigation.pushAndRemoveAllWithFadingAnimation(
+            context: context,
+            view: const HomeView(),
+          );
+        }
+      },
+      builder: (context, state) {
+        return ModalProgressHUD(
+          inAsyncCall: state.isLoading,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: kPadding),
+            child: Form(
+              key: formKey,
+              autovalidateMode: state.autovalidateMode,
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 47,
+                  ),
+                  Text(
+                    "Sign In",
+                    style: AppTextStyle.styleBold30(),
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  CustomTextFormField(
+                    hintText: "Enter Email",
+                    validator: (email) {
+                      return validateEmail(email);
+                    },
+                    onSaved: (email) {
+                      this.email = email!;
+                    },
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  PasswordTextFormField(
+                    validator: (password) {
+                      return validatePassword(password);
+                    },
+                    onSaved: (password) {
+                      this.password = password!;
+                    },
+                  ),
+                  const SizedBox(
+                    height: 33,
+                  ),
+                  CustomElevatedBudtton(
+                    text: Text(
+                      "Sign In",
+                      style: AppTextStyle.styleBold20(),
+                    ),
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        formKey.currentState!.save();
+                        BlocProvider.of<SignInCubit>(context).signInUser(
+                          email: email,
+                          password: password,
+                        );
+                      } else {
+                        BlocProvider.of<SignInCubit>(context)
+                            .signInValidateMode();
+                      }
+                    },
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  AskWithTextButton(
+                    askContent: "Not A Member?",
+                    textButtonContent: "Register Now",
+                    onPressed: () {
+                      AppNavigation.pushReplacementWithFadingAnimation(
+                        context: context,
+                        view: const RegisterView(),
+                      );
+                    },
+                  )
+                ],
               ),
-              TextButton(
-                onPressed: () {
-                  AppNavigation.pushReplacement(
-                    context: context,
-                    view: const RegisterView(),
-                  );
-                },
-                child: Text(
-                  "Register Now",
-                  style: AppTextStyle.styleBold15()
-                      .copyWith(color: const Color(0xff288CE9)),
-                ),
-              )
-            ],
-          )
-        ],
-      ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

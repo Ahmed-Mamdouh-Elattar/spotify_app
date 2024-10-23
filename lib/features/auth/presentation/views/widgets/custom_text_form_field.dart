@@ -6,27 +6,30 @@ class CustomTextFormField extends StatelessWidget {
     this.onSaved,
     this.validator,
     this.hintText,
-    this.prefixIcon,
+    this.suffixIcon,
     this.obscureText = false,
+    this.controller,
   });
-  final Function(String?)? onSaved;
+  final TextEditingController? controller;
+  final void Function(String?)? onSaved;
   final String? Function(String?)? validator;
   final String? hintText;
-  final Widget? prefixIcon;
+  final Widget? suffixIcon;
   final bool obscureText;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       obscureText: obscureText,
       onSaved: onSaved,
       validator: validator,
       decoration: InputDecoration(
         contentPadding: const EdgeInsetsDirectional.symmetric(
-          horizontal: 16,
+          horizontal: 15,
           vertical: 25,
         ),
         hintText: hintText,
-        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
       ),
     );
   }
