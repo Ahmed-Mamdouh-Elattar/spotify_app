@@ -43,7 +43,12 @@ class CustomSliverAppBar extends StatelessWidget
         showMenuIcon
             ? IconButton(
                 onPressed: onPressedMenuIcon,
-                icon: const Icon(FontAwesomeIcons.ellipsisVertical),
+                icon: Icon(
+                  FontAwesomeIcons.ellipsisVertical,
+                  color: context.isDarkTheme
+                      ? const Color(0xffDDDDDD)
+                      : const Color(0xff7D7D7D),
+                ),
               )
             : const SizedBox(),
       ],

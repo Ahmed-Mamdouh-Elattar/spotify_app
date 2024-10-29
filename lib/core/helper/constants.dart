@@ -1,4 +1,4 @@
 const double kPadding = 25;
-const String usersCollection = "users";
-const String recordsCollection = "records";
-const String userIdKey = "email";
+const String kUsersCollection = "users";
+const String kRecordsCollection = "records";
+const String kUserIdKey = "email";

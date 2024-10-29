@@ -3,7 +3,7 @@ import 'package:spotify_app/core/helper/constants.dart';
 
 void addUserToCloudFireStore(String name, String email) {
   CollectionReference users =
-      FirebaseFirestore.instance.collection(usersCollection);
+      FirebaseFirestore.instance.collection(kUsersCollection);
   users.add({
     "name": name,
     "email": email,

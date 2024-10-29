@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotify_app/core/configs/app_color.dart';
 import 'package:spotify_app/core/configs/app_text_style.dart';
 import 'package:spotify_app/core/helper/is_dark_theme_extention.dart';
+import 'package:spotify_app/features/home/presentation/views/managers/general_data_cubit/home_view_cubit.dart';
+import 'package:spotify_app/features/home/presentation/views/managers/quran_and_podcast_cubit/quran_and_podcast_cubit.dart';
 
 class CustomTabBar extends StatefulWidget {
   const CustomTabBar({super.key});
@@ -31,6 +34,14 @@ class _CustomTabBarState extends State<CustomTabBar>
           : const Color(0xffBEBEBE),
       indicatorColor: AppColor.primaryColor,
       indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
+      onTap: (value) {
+        if (value == 0) {
+          BlocProvider.of<QuranAndPodcastCubit>(context).getQuranRecordsData();
+        } else {
+          BlocProvider.of<QuranAndPodcastCubit>(context)
+              .getPodcastsRecordsData();
+        }
+      },
       tabs: const [
         Text(
           "Quran",
