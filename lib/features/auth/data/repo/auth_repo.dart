@@ -8,5 +8,6 @@ abstract class AuthRepo {
   Future<Either<String, void>> register({
     required String email,
     required String password,
+    required String name,
   });
 }

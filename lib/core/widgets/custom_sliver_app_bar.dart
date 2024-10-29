@@ -3,8 +3,9 @@ import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:spotify_app/core/helper/is_dark_theme_extention.dart';
 import 'package:spotify_app/core/widgets/custom_icon.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar(
+class CustomSliverAppBar extends StatelessWidget
+    implements PreferredSizeWidget {
+  const CustomSliverAppBar(
       {super.key,
       required this.prefixIcon,
       this.centerWidget,
@@ -19,7 +20,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
+    return SliverAppBar(
+      scrolledUnderElevation: 0,
+      floating: true,
       centerTitle: true,
       elevation: 0,
       leading: Padding(

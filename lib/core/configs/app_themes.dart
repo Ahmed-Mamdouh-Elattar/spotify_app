@@ -11,6 +11,11 @@ class AppThemes {
     ),
     primaryColor: AppColor.primaryColor,
     fontFamily: "Satoshi",
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Color(0xffF2F2F2),
+      surfaceTintColor: Color(0xffF2F2F2),
+      foregroundColor: Color(0xffF2F2F2),
+    ),
     scaffoldBackgroundColor: const Color(0xffF2F2F2),
     brightness: Brightness.light,
     inputDecorationTheme: InputDecorationTheme(
@@ -48,6 +53,11 @@ class AppThemes {
     ),
     primaryColor: AppColor.primaryColor,
     fontFamily: "Satoshi",
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Color(0xff0D0C0C),
+      surfaceTintColor: Color(0xff0D0C0C),
+      foregroundColor: Color(0xff0D0C0C),
+    ),
     scaffoldBackgroundColor: const Color(0xff0D0C0C),
     brightness: Brightness.dark,
     inputDecorationTheme: InputDecorationTheme(

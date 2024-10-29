@@ -46,6 +46,10 @@ class Assets {
   /// assets/images/logo.svg
   static const String imagesLogo = "assets/images/logo.svg";
 
+  /// Assets for imagesMashariAlfasyCover
+  /// assets/images/mashari_alfasy_cover.png
+  static const String imagesMashariAlfasyCover = "assets/images/mashari_alfasy_cover.png";
+
   /// Assets for imagesMoon
   /// assets/images/moon.svg
   static const String imagesMoon = "assets/images/moon.svg";

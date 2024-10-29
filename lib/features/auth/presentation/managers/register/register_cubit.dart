@@ -9,11 +9,15 @@ class RegisterCubit extends Cubit<RegisterState> {
       : _authRepoImp = authRepoImp,
         super(RegisterInitial());
   final AuthRepoImp _authRepoImp;
-  void registerUser({required String email, required String password}) async {
+  void registerUser(
+      {required String email,
+      required String password,
+      required String name}) async {
     emit(RegisterLoading());
     var result = await _authRepoImp.register(
       email: email,
       password: password,
+      name: name,
     );
     result.fold((errMessage) {
       emit(RegisterFailure(errMessage: errMessage));

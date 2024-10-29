@@ -15,28 +15,31 @@ class PasswordTextFormField extends StatelessWidget {
   final void Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ShowAndHidePasswordCubit, bool>(
-      builder: (context, state) {
-        return CustomTextFormField(
-          validator: validator,
-          onSaved: onSaved,
-          obscureText: state,
-          controller: passwordController,
-          hintText: "Password",
-          suffixIcon: Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: IconButton(
-              onPressed: () {
-                BlocProvider.of<ShowAndHidePasswordCubit>(context)
-                    .showAndHidePassword();
-              },
-              icon: state
-                  ? const Icon(Icons.visibility_off)
-                  : const Icon(Icons.visibility),
+    return BlocProvider(
+      create: (context) => ShowAndHidePasswordCubit(),
+      child: BlocBuilder<ShowAndHidePasswordCubit, bool>(
+        builder: (context, state) {
+          return CustomTextFormField(
+            validator: validator,
+            onSaved: onSaved,
+            obscureText: state,
+            controller: passwordController,
+            hintText: "Password",
+            suffixIcon: Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: IconButton(
+                onPressed: () {
+                  BlocProvider.of<ShowAndHidePasswordCubit>(context)
+                      .showAndHidePassword();
+                },
+                icon: state
+                    ? const Icon(Icons.visibility_off)
+                    : const Icon(Icons.visibility),
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

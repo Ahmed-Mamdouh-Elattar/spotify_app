@@ -153,7 +153,7 @@ class AppNavigation {
     Duration reverseTransitionDuration = const Duration(milliseconds: 300),
     Duration transitionDuratio = const Duration(milliseconds: 300),
   }) {
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
       PageRouteBuilder(
         reverseTransitionDuration: reverseTransitionDuration,

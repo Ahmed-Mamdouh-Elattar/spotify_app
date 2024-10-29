@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotify_app/core/helper/is_dark_theme_extention.dart';
 
 class CustomIcon extends StatelessWidget {
   const CustomIcon(
@@ -15,10 +16,13 @@ class CustomIcon extends StatelessWidget {
         color: color,
         shape: BoxShape.circle,
       ),
-      child: FittedBox(
+      child: Center(
         child: IconButton(
           onPressed: onPressed,
-          icon: Icon(icon),
+          icon: Icon(
+            icon,
+            color: context.isDarkTheme ? Colors.white : Colors.black,
+          ),
         ),
       ),
     );
