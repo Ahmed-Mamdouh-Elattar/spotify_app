@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:spotify_app/core/configs/app_text_style.dart';
-import 'package:spotify_app/core/configs/assets.dart';
 import 'package:spotify_app/core/helper/is_dark_theme_extention.dart';
 import 'package:spotify_app/features/home/data/models/record_model/record_model.dart';
 import 'package:spotify_app/features/home/data/models/record_model/time_duration.dart';
+import 'package:spotify_app/features/home/presentation/views/widgets/favourite_icon_button.dart';
 import 'package:spotify_app/features/home/presentation/views/widgets/home_play_icon_button.dart';
 
 class GeneralItem extends StatelessWidget {
@@ -48,11 +47,7 @@ class GeneralItem extends StatelessWidget {
                   : const Color(0xff000000)),
         ),
         const Spacer(),
-        GestureDetector(
-          child: context.isDarkTheme
-              ? SvgPicture.asset(Assets.imagesFavouriteDark)
-              : SvgPicture.asset(Assets.imagesFavouriteLight),
-        )
+        const FavouriteIconButton(),
       ],
     );
   }

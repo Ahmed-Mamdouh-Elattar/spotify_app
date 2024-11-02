@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:spotify_app/core/utils/app_navigation.dart';
 import 'package:spotify_app/features/home/data/models/record_model/record_model.dart';
 import 'package:spotify_app/features/home/data/models/record_model/time_duration.dart';
 import 'package:spotify_app/features/home/presentation/views/managers/quran_and_podcast_cubit/quran_and_podcast_cubit.dart';
+import 'package:spotify_app/features/home/presentation/views/record_view.dart';
 import 'package:spotify_app/features/home/presentation/views/widgets/quran_and_podcast_item.dart';
 
 class QuranAndPodcastList extends StatelessWidget {
@@ -26,8 +28,17 @@ class QuranAndPodcastList extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.only(right: 14),
-                child: QuranAndPodcastItem(
-                  record: state.records[index],
+                child: MaterialButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () => AppNavigation.pushWithSlidingAnimation(
+                    context: context,
+                    view: RecordView(
+                      record: state.records[index],
+                    ),
+                  ),
+                  child: QuranAndPodcastItem(
+                    record: state.records[index],
+                  ),
                 ),
               );
             },

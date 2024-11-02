@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
+import 'package:spotify_app/core/configs/assets.dart';
 import 'package:spotify_app/core/helper/is_dark_theme_extention.dart';
 import 'package:spotify_app/core/widgets/custom_icon.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar(
-      {super.key,
-      required this.prefixIcon,
-      this.centerWidget,
-      this.showMenuIcon = false,
-      this.onPressedMenuIcon,
-      this.onPressedPrefixIcon});
+  const CustomAppBar({
+    super.key,
+    required this.prefixIcon,
+    this.centerWidget,
+    this.showMenuIcon = false,
+    this.onPressedMenuIcon,
+    this.onPressedPrefixIcon,
+    this.showLogo = false,
+  });
   final IconData prefixIcon;
   final Widget? centerWidget;
   final bool showMenuIcon;
   final void Function()? onPressedMenuIcon;
   final void Function()? onPressedPrefixIcon;
-
+  final bool showLogo;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -32,10 +36,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           onPressed: onPressedPrefixIcon,
         ),
       ),
-      title: SizedBox(
-        height: kToolbarHeight * 0.75,
-        child: centerWidget,
-      ),
+      title: showLogo
+          ? SizedBox(
+              height: kToolbarHeight * 0.75,
+              child: SvgPicture.asset(Assets.imagesLogo),
+            )
+          : centerWidget,
       actions: [
         showMenuIcon
             ? IconButton(

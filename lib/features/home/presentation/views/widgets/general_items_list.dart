@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:spotify_app/core/helper/constants.dart';
+import 'package:spotify_app/core/utils/app_navigation.dart';
 import 'package:spotify_app/features/home/data/models/record_model/record_model.dart';
 import 'package:spotify_app/features/home/data/models/record_model/time_duration.dart';
 import 'package:spotify_app/features/home/presentation/views/managers/general_data_cubit/home_view_cubit.dart';
+import 'package:spotify_app/features/home/presentation/views/record_view.dart';
 import 'package:spotify_app/features/home/presentation/views/widgets/general_item.dart';
 
 class GeneralItemsList extends StatelessWidget {
@@ -26,8 +28,17 @@ class GeneralItemsList extends StatelessWidget {
             itemBuilder: (context, index) => Padding(
               padding: const EdgeInsets.only(
                   bottom: 19, left: kPadding, right: kPadding),
-              child: GeneralItem(
-                record: state.records[index],
+              child: MaterialButton(
+                onPressed: () => AppNavigation.pushWithSlidingAnimation(
+                  context: context,
+                  view: RecordView(
+                    record: state.records[index],
+                  ),
+                ),
+                padding: EdgeInsets.zero,
+                child: GeneralItem(
+                  record: state.records[index],
+                ),
               ),
             ),
           );

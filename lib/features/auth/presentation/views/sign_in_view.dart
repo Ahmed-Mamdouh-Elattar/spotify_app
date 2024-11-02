@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:spotify_app/core/configs/assets.dart';
 import 'package:spotify_app/core/utils/app_navigation.dart';
 import 'package:spotify_app/core/utils/service_locator.dart';
 import 'package:spotify_app/core/widgets/custom_app_bar.dart';
@@ -22,7 +20,7 @@ class SignInView extends StatelessWidget {
         appBar: CustomAppBar(
           onPressedPrefixIcon: () => AppNavigation.pop(context),
           prefixIcon: Icons.arrow_back_ios_new,
-          centerWidget: SvgPicture.asset(Assets.imagesLogo),
+          showLogo: true,
         ),
         body: const SignInViewBody(),
       ),
