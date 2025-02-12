@@ -50,86 +50,88 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
             child: Form(
               key: formKey,
               autovalidateMode: state.autovalidateMode,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 47,
-                  ),
-                  Text(
-                    "Register",
-                    style: AppTextStyle.styleBold30(),
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  CustomTextFormField(
-                    hintText: "Full Name",
-                    validator: (value) {
-                      return validataName(value);
-                    },
-                    onSaved: (name) {
-                      this.name = name!;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  CustomTextFormField(
-                    hintText: "Enter Email",
-                    validator: (email) {
-                      return validateEmail(email);
-                    },
-                    onSaved: (email) {
-                      this.email = email!;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  PasswordTextFormField(
-                    validator: (password) {
-                      return validatePassword(password);
-                    },
-                    onSaved: (password) {
-                      this.password = password!;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 33,
-                  ),
-                  CustomElevatedBudtton(
-                    text: Text(
-                      "Create Account",
-                      style: AppTextStyle.styleBold20(),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 47,
                     ),
-                    onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        formKey.currentState!.save();
-                        BlocProvider.of<RegisterCubit>(context).registerUser(
-                          email: email,
-                          password: password,
-                          name: name,
+                    Text(
+                      "Register",
+                      style: AppTextStyle.styleBold30(),
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    CustomTextFormField(
+                      hintText: "Full Name",
+                      validator: (value) {
+                        return validataName(value);
+                      },
+                      onSaved: (name) {
+                        this.name = name!;
+                      },
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    CustomTextFormField(
+                      hintText: "Enter Email",
+                      validator: (email) {
+                        return validateEmail(email);
+                      },
+                      onSaved: (email) {
+                        this.email = email!;
+                      },
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    PasswordTextFormField(
+                      validator: (password) {
+                        return validatePassword(password);
+                      },
+                      onSaved: (password) {
+                        this.password = password!;
+                      },
+                    ),
+                    const SizedBox(
+                      height: 33,
+                    ),
+                    CustomElevatedBudtton(
+                      text: Text(
+                        "Create Account",
+                        style: AppTextStyle.styleBold20(),
+                      ),
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          formKey.currentState!.save();
+                          BlocProvider.of<RegisterCubit>(context).registerUser(
+                            email: email,
+                            password: password,
+                            name: name,
+                          );
+                        } else {
+                          BlocProvider.of<RegisterCubit>(context)
+                              .registerValidateMode();
+                        }
+                      },
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    AskWithTextButton(
+                      askContent: "Do You Have An Account",
+                      textButtonContent: "Sign In",
+                      onPressed: () {
+                        AppNavigation.pushReplacementWithFadingAnimation(
+                          context: context,
+                          view: const SignInView(),
                         );
-                      } else {
-                        BlocProvider.of<RegisterCubit>(context)
-                            .registerValidateMode();
-                      }
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  AskWithTextButton(
-                    askContent: "Do You Have An Account",
-                    textButtonContent: "Sign In",
-                    onPressed: () {
-                      AppNavigation.pushReplacementWithFadingAnimation(
-                        context: context,
-                        view: const SignInView(),
-                      );
-                    },
-                  )
-                ],
+                      },
+                    )
+                  ],
+                ),
               ),
             ),
           ),

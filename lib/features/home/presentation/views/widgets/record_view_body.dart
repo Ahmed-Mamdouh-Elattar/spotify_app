@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotify_app/core/configs/app_color.dart';
 import 'package:spotify_app/core/configs/app_text_style.dart';
 import 'package:spotify_app/core/helper/constants.dart';
 import 'package:spotify_app/features/home/data/models/record_model/record_model.dart';
+import 'package:spotify_app/features/home/presentation/views/managers/record/record_cubit.dart';
 import 'package:spotify_app/features/home/presentation/views/widgets/favourite_icon_button.dart';
 import 'package:spotify_app/features/home/presentation/views/widgets/record_slider_with_time.dart';
 
@@ -83,22 +85,36 @@ class RecordViewBody extends StatelessWidget {
           flex: 2,
           child: RecordSliderWithTime(),
         ),
-        IconButton(
-          onPressed: () {},
-          padding: EdgeInsets.zero,
-          icon: Container(
-            height: 72,
-            width: 72,
-            decoration: const BoxDecoration(
-              color: AppColor.primaryColor,
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(
-              Icons.pause,
-              size: 28,
-              color: Colors.white,
-            ),
-          ),
+        BlocBuilder<RecordCubit, RecordState>(
+          builder: (context, state) {
+            return IconButton(
+              onPressed: () {
+                if (state is RecordLoading) {
+                  BlocProvider.of<RecordCubit>(context)
+                      .recordPlay(record.recordUrl!);
+                } else if (state is RecordStop) {
+                  BlocProvider.of<RecordCubit>(context)
+                      .recordPlay(record.recordUrl!);
+                } else if (state is RecordPlay) {
+                  BlocProvider.of<RecordCubit>(context).recordStop();
+                }
+              },
+              padding: EdgeInsets.zero,
+              icon: Container(
+                height: 72,
+                width: 72,
+                decoration: const BoxDecoration(
+                  color: AppColor.primaryColor,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  state is RecordPlay ? Icons.pause : Icons.play_arrow,
+                  size: 28,
+                  color: Colors.white,
+                ),
+              ),
+            );
+          },
         ),
         const Spacer(),
       ],

@@ -49,73 +49,75 @@ class _SignInViewBodyState extends State<SignInViewBody> {
             child: Form(
               key: formKey,
               autovalidateMode: state.autovalidateMode,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 47,
-                  ),
-                  Text(
-                    "Sign In",
-                    style: AppTextStyle.styleBold30(),
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  CustomTextFormField(
-                    hintText: "Enter Email",
-                    validator: (email) {
-                      return validateEmail(email);
-                    },
-                    onSaved: (email) {
-                      this.email = email!;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  PasswordTextFormField(
-                    validator: (password) {
-                      return validatePassword(password);
-                    },
-                    onSaved: (password) {
-                      this.password = password!;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 33,
-                  ),
-                  CustomElevatedBudtton(
-                    text: Text(
-                      "Sign In",
-                      style: AppTextStyle.styleBold20(),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 47,
                     ),
-                    onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        formKey.currentState!.save();
-                        BlocProvider.of<SignInCubit>(context).signInUser(
-                          email: email,
-                          password: password,
+                    Text(
+                      "Sign In",
+                      style: AppTextStyle.styleBold30(),
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    CustomTextFormField(
+                      hintText: "Enter Email",
+                      validator: (email) {
+                        return validateEmail(email);
+                      },
+                      onSaved: (email) {
+                        this.email = email!;
+                      },
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    PasswordTextFormField(
+                      validator: (password) {
+                        return validatePassword(password);
+                      },
+                      onSaved: (password) {
+                        this.password = password!;
+                      },
+                    ),
+                    const SizedBox(
+                      height: 33,
+                    ),
+                    CustomElevatedBudtton(
+                      text: Text(
+                        "Sign In",
+                        style: AppTextStyle.styleBold20(),
+                      ),
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          formKey.currentState!.save();
+                          BlocProvider.of<SignInCubit>(context).signInUser(
+                            email: email,
+                            password: password,
+                          );
+                        } else {
+                          BlocProvider.of<SignInCubit>(context)
+                              .signInValidateMode();
+                        }
+                      },
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    AskWithTextButton(
+                      askContent: "Not A Member?",
+                      textButtonContent: "Register Now",
+                      onPressed: () {
+                        AppNavigation.pushReplacementWithFadingAnimation(
+                          context: context,
+                          view: const RegisterView(),
                         );
-                      } else {
-                        BlocProvider.of<SignInCubit>(context)
-                            .signInValidateMode();
-                      }
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  AskWithTextButton(
-                    askContent: "Not A Member?",
-                    textButtonContent: "Register Now",
-                    onPressed: () {
-                      AppNavigation.pushReplacementWithFadingAnimation(
-                        context: context,
-                        view: const RegisterView(),
-                      );
-                    },
-                  )
-                ],
+                      },
+                    )
+                  ],
+                ),
               ),
             ),
           ),

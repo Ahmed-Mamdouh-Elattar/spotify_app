@@ -29,8 +29,8 @@ class CustomSliverAppBar extends StatelessWidget
         padding: const EdgeInsets.only(left: 15),
         child: CustomIcon(
           color: context.isDarkTheme
-              ? Colors.white.withOpacity(0.03)
-              : const Color(0xff000000).withOpacity(0.04),
+              ? Colors.white.withAlpha((0.03 * 255).toInt())
+              : const Color(0xff000000).withAlpha((0.04 * 255).toInt()),
           icon: prefixIcon,
           onPressed: onPressedPrefixIcon,
         ),

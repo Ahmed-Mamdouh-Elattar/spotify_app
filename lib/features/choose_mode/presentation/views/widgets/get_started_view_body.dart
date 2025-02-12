@@ -24,10 +24,10 @@ class GetStartedViewBody extends StatelessWidget {
           ),
         ),
         Container(
-          color: Colors.blueGrey.withOpacity(0.2),
+          color: Colors.blueGrey.withAlpha((0.2 * 255).toInt()),
         ),
         Container(
-          color: Colors.black.withOpacity(0.3),
+          color: Colors.black.withAlpha((0.3 * 255).toInt()),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: kPadding),
             child: Column(

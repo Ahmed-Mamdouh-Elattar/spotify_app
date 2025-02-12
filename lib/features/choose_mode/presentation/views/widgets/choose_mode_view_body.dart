@@ -26,7 +26,9 @@ class ChooseModeViewBody extends StatelessWidget {
           ),
         ),
         Container(
-          color: Colors.black.withOpacity(0.35),
+          color: Colors.black.withAlpha(
+            (0.35 * 255).toInt(),
+          ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: kPadding),
             child: Column(

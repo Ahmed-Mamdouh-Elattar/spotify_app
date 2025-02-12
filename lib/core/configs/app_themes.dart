@@ -23,18 +23,18 @@ class AppThemes {
         horizontal: 12,
       ),
       hintStyle: AppTextStyle.styleMedium16().copyWith(
-        color: const Color(0xff383838).withOpacity(0.6),
+        color: const Color(0xff383838).withAlpha((0.5 * 255).toInt()),
       ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
         borderSide: BorderSide(
-          color: Colors.black.withOpacity(0.2),
+          color: Colors.black.withAlpha((0.2 * 255).toInt()),
         ),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
         borderSide: BorderSide(
-          color: Colors.black.withOpacity(0.2),
+          color: Colors.black.withAlpha((0.2 * 255).toInt()),
         ),
       ),
       focusedBorder: OutlineInputBorder(
@@ -62,12 +62,12 @@ class AppThemes {
     brightness: Brightness.dark,
     inputDecorationTheme: InputDecorationTheme(
       hintStyle: AppTextStyle.styleBold16().copyWith(
-        color: const Color(0xffA7A7A7).withOpacity(0.6),
+        color: const Color(0xffA7A7A7).withAlpha((0.6 * 255).toInt()),
       ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
         borderSide: BorderSide(
-          color: Colors.white.withOpacity(0.2),
+          color: Colors.white.withAlpha((0.2 * 255).toInt()),
         ),
       ),
       focusedBorder: OutlineInputBorder(
@@ -79,7 +79,7 @@ class AppThemes {
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
         borderSide: BorderSide(
-          color: Colors.white.withOpacity(0.2),
+          color: Colors.white.withAlpha((0.2 * 255).toInt()),
         ),
       ),
     ),
