@@ -10,7 +10,7 @@ import 'package:spotify_app/features/home/presentation/views/widgets/favourite_i
 import 'package:spotify_app/features/home/presentation/views/widgets/record_slider_with_time.dart';
 
 class RecordViewBody extends StatelessWidget {
-  const RecordViewBody({super.key, required this.record});
+  const RecordViewBody({required this.record, super.key});
   final RecordModel record;
   @override
   Widget build(BuildContext context) {

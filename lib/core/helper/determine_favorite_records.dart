@@ -4,6 +4,8 @@ void determineFavoriteRecords(
     {required List<RecordModel> records,
     required List<dynamic> favorites}) async {
   for (var element in records) {
-    if (favorites.contains(element.id)) element.changeFavouriteValue();
+    if (favorites.contains(element.id)) {
+      element.changeFavouriteValue();
+    }
   }
 }

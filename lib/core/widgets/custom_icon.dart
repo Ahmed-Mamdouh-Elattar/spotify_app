@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:spotify_app/core/helper/is_dark_theme_extention.dart';
 
 class CustomIcon extends StatelessWidget {
-  const CustomIcon(
-      {super.key, required this.color, this.onPressed, required this.icon});
+  const CustomIcon({
+    required this.color,
+    required this.icon,
+    super.key,
+    this.onPressed,
+  });
   final Color color;
   final void Function()? onPressed;
   final IconData icon;

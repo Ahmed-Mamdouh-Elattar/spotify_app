@@ -7,8 +7,8 @@ import 'package:spotify_app/core/widgets/custom_icon.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
-    super.key,
     required this.prefixIcon,
+    super.key,
     this.centerWidget,
     this.showMenuIcon = false,
     this.onPressedMenuIcon,

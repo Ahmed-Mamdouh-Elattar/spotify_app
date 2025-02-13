@@ -8,7 +8,7 @@ part 'favorite_record_state.dart';
 class FavoritesRecordCubit extends Cubit<FavoriteRecordState> {
   FavoritesRecordCubit(this._homeRepoImp)
       : super(
-          FavoriteRecordInitial(
+          const FavoriteRecordInitial(
             newFavoriteRecords: [],
           ),
         );

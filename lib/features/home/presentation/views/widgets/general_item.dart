@@ -7,7 +7,7 @@ import 'package:spotify_app/features/home/presentation/views/widgets/favourite_i
 import 'package:spotify_app/features/home/presentation/views/widgets/home_play_icon_button.dart';
 
 class GeneralItem extends StatelessWidget {
-  const GeneralItem({super.key, required this.record});
+  const GeneralItem({required this.record, super.key});
   final RecordModel record;
   @override
   Widget build(BuildContext context) {

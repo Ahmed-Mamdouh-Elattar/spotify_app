@@ -71,7 +71,7 @@ class HomeViewBody extends StatelessWidget {
   void navigateToProfileView(BuildContext context) {
     AppNavigation.pushWithSlidingAnimation(
       context: context,
-      view: ProfileView(),
+      view: const ProfileView(),
     );
   }
 }

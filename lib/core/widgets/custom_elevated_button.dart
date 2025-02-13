@@ -3,9 +3,9 @@ import 'package:spotify_app/core/configs/app_color.dart';
 
 class CustomElevatedBudtton extends StatelessWidget {
   const CustomElevatedBudtton({
+    required this.text,
     super.key,
     this.onPressed,
-    required this.text,
     this.color = AppColor.primaryColor,
   });
   final void Function()? onPressed;

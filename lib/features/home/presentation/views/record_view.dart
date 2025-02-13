@@ -8,7 +8,10 @@ import 'package:spotify_app/features/home/presentation/views/managers/record/rec
 import 'package:spotify_app/features/home/presentation/views/widgets/record_view_body.dart';
 
 class RecordView extends StatelessWidget {
-  const RecordView({super.key, required this.record});
+  const RecordView({
+    required this.record,
+    super.key,
+  });
   final RecordModel record;
   @override
   Widget build(BuildContext context) {

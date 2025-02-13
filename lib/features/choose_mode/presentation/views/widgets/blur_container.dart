@@ -6,9 +6,9 @@ import 'package:spotify_app/core/configs/app_text_style.dart';
 
 class BlurContainer extends StatelessWidget {
   const BlurContainer({
-    super.key,
     required this.image,
     required this.title,
+    super.key,
     this.onTap,
     this.isChoosed = false,
   });

@@ -3,9 +3,9 @@ import 'package:spotify_app/core/configs/app_text_style.dart';
 
 class AskWithTextButton extends StatelessWidget {
   const AskWithTextButton({
-    super.key,
     required this.askContent,
     required this.textButtonContent,
+    super.key,
     this.onPressed,
   });
   final String askContent, textButtonContent;

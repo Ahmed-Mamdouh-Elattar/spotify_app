@@ -6,8 +6,8 @@ import 'package:spotify_app/core/widgets/custom_icon.dart';
 class CustomSliverAppBar extends StatelessWidget
     implements PreferredSizeWidget {
   const CustomSliverAppBar(
-      {super.key,
-      required this.prefixIcon,
+      {required this.prefixIcon,
+      super.key,
       this.centerWidget,
       this.showMenuIcon = false,
       this.onPressedProfileIcon,

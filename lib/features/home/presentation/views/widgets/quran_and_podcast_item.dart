@@ -5,7 +5,7 @@ import 'package:spotify_app/features/home/data/models/record_model/record_model.
 import 'package:spotify_app/features/home/presentation/views/widgets/home_play_icon_button.dart';
 
 class QuranAndPodcastItem extends StatelessWidget {
-  const QuranAndPodcastItem({super.key, required this.record});
+  const QuranAndPodcastItem({required this.record, super.key});
   final RecordModel record;
   @override
   Widget build(BuildContext context) {

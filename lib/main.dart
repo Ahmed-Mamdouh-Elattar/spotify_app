@@ -43,7 +43,7 @@ void main() async {
 }
 
 class SpotifyApp extends StatelessWidget {
-  const SpotifyApp({super.key, required this.favoritesRecordCubit});
+  const SpotifyApp({required this.favoritesRecordCubit, super.key});
   final FavoritesRecordCubit favoritesRecordCubit;
   @override
   Widget build(BuildContext context) {

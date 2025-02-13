@@ -6,8 +6,8 @@ import 'package:spotify_app/features/home/presentation/views/managers/favourites
 
 class FavouriteIconButton extends StatelessWidget {
   const FavouriteIconButton({
-    super.key,
     required this.recordModel,
+    super.key,
   });
   final RecordModel recordModel;
   @override
