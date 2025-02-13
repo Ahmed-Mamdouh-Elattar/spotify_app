@@ -8,7 +8,6 @@ class RecordModel {
   final String? title;
   final String? personName;
   final TimeDuration duration;
-  bool isFavourite = false;
 
   RecordModel({
     required this.id,
@@ -32,8 +31,5 @@ class RecordModel {
         json["duration"],
       ),
     );
-  }
-  changeFavouriteValue() {
-    isFavourite = !isFavourite;
   }
 }

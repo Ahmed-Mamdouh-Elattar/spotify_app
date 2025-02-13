@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:spotify_app/core/configs/app_text_style.dart';
 import 'package:spotify_app/core/configs/assets.dart';
 import 'package:spotify_app/core/helper/constants.dart';
 import 'package:spotify_app/core/helper/is_dark_theme_extention.dart';
+import 'package:spotify_app/features/home/data/models/user_model/user_model.dart';
+import 'package:spotify_app/features/home/presentation/views/managers/user_info_cubit/user_info_cubit.dart';
 import 'package:spotify_app/features/home/presentation/views/widgets/profile_view_appbar.dart';
 
 class ProfileAppBarWithUserInfo extends StatelessWidget {
@@ -13,6 +16,7 @@ class ProfileAppBarWithUserInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserModel user = BlocProvider.of<UserInfoCubit>(context).user;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: kPadding),
       decoration: BoxDecoration(
@@ -33,14 +37,14 @@ class ProfileAppBarWithUserInfo extends StatelessWidget {
             height: 15,
           ),
           Text(
-            "andkjxanbkj@gmail.com",
+            user.email,
             style: AppTextStyle.styleRegular17(),
           ),
           const SizedBox(
             height: 8,
           ),
           Text(
-            "Ahmed Mamdouh",
+            user.name,
             style: AppTextStyle.styleBold20(),
           ),
           const SizedBox(

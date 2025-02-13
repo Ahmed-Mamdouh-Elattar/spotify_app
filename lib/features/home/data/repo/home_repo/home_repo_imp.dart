@@ -3,9 +3,9 @@ import 'package:dartz/dartz.dart';
 import 'package:spotify_app/core/helper/record_favorites_function.dart';
 import 'package:spotify_app/core/helper/constants.dart';
 
-import 'package:spotify_app/core/helper/determine_favorite_records.dart';
 import 'package:spotify_app/core/helper/get_user_id.dart';
 import 'package:spotify_app/features/home/data/models/record_model/record_model.dart';
+import 'package:spotify_app/features/home/data/models/user_model/user_model.dart';
 import 'package:spotify_app/features/home/data/repo/home_repo/home_repo.dart';
 
 class HomeRepoImp extends HomeRepo {
@@ -18,7 +18,6 @@ class HomeRepoImp extends HomeRepo {
       List<RecordModel> records = recordsData.docs.map((e) {
         return RecordModel.fromJson(json: e.data(), id: e.id);
       }).toList();
-      determineFavoriteRecords(records: records, favorites: favorites);
 
       return right(records);
     } on Exception catch (e) {
@@ -37,7 +36,7 @@ class HomeRepoImp extends HomeRepo {
       List<RecordModel> records = data.docs.map((e) {
         return RecordModel.fromJson(json: e.data(), id: e.id);
       }).toList();
-      determineFavoriteRecords(records: records, favorites: favorites);
+
       return right(records);
     } on Exception catch (e) {
       return left(e.toString());
@@ -55,7 +54,7 @@ class HomeRepoImp extends HomeRepo {
       List<RecordModel> records = data.docs.map((e) {
         return RecordModel.fromJson(id: e.id, json: e.data());
       }).toList();
-      determineFavoriteRecords(favorites: favorites, records: records);
+
       return right(records);
     } on Exception catch (e) {
       return left(e.toString());
@@ -73,12 +72,26 @@ class HomeRepoImp extends HomeRepo {
   }
 
   @override
-  Future<List<dynamic>> fetchFavoriteRecords() async {
+  Future<UserModel> fetchUserInfo() async {
     var data = await FirebaseFirestore.instance
         .collection(kUsersCollection)
         .doc(await getUserId())
         .get();
-    List<dynamic> favoritesRecords = data.data()!["favorites"];
-    return favoritesRecords;
+    UserModel user = UserModel.fromJson(data.data()!);
+    return user;
+  }
+
+  @override
+  List<RecordModel> fetchFavoriteRecordList(
+      List favorites, List<RecordModel> records) {
+    List<RecordModel> favoriteRecords = [];
+    for (var favoriteRecordId in favorites) {
+      for (var record in records) {
+        if (favoriteRecordId == record.id) {
+          favoriteRecords.add(record);
+        }
+      }
+    }
+    return favoriteRecords;
   }
 }

@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotify_app/core/configs/app_color.dart';
 import 'package:spotify_app/core/configs/app_text_style.dart';
 import 'package:spotify_app/core/helper/is_dark_theme_extention.dart';
-import 'package:spotify_app/features/home/presentation/views/managers/favourites_record_cubit/favorite_record_cubit.dart';
 import 'package:spotify_app/features/home/presentation/views/managers/quran_and_podcast_cubit/quran_and_podcast_cubit.dart';
+import 'package:spotify_app/features/home/presentation/views/managers/user_info_cubit/user_info_cubit.dart';
 
 class CustomTabBar extends StatefulWidget {
   const CustomTabBar({super.key});
@@ -36,7 +36,7 @@ class _CustomTabBarState extends State<CustomTabBar>
       indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
       onTap: (value) {
         List<dynamic> favoriteRecords =
-            BlocProvider.of<FavoritesRecordCubit>(context).favoriteRecords;
+            BlocProvider.of<UserInfoCubit>(context).user.favorites;
         if (value == 0) {
           BlocProvider.of<QuranAndPodcastCubit>(context)
               .getQuranRecordsData(favoriteRecords);

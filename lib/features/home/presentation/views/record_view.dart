@@ -27,7 +27,6 @@ class RecordView extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-          showMenuIcon: true,
         ),
         body: RecordViewBody(
           record: record,

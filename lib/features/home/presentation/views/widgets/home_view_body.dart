@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:spotify_app/core/configs/app_text_style.dart';
@@ -6,6 +7,10 @@ import 'package:spotify_app/core/configs/assets.dart';
 import 'package:spotify_app/core/helper/constants.dart';
 import 'package:spotify_app/core/utils/app_navigation.dart';
 import 'package:spotify_app/core/widgets/custom_sliver_app_bar.dart';
+import 'package:spotify_app/features/home/data/models/record_model/record_model.dart';
+import 'package:spotify_app/features/home/presentation/views/managers/favorite_records/favorite_records_cubit.dart';
+import 'package:spotify_app/features/home/presentation/views/managers/general_data_cubit/home_view_cubit.dart';
+import 'package:spotify_app/features/home/presentation/views/managers/user_info_cubit/user_info_cubit.dart';
 import 'package:spotify_app/features/home/presentation/views/profile_view.dart';
 import 'package:spotify_app/features/home/presentation/views/widgets/custom_tab_bar.dart';
 import 'package:spotify_app/features/home/presentation/views/widgets/general_items_list.dart';
@@ -69,6 +74,12 @@ class HomeViewBody extends StatelessWidget {
   }
 
   void navigateToProfileView(BuildContext context) {
+    List<RecordModel> records =
+        BlocProvider.of<GeneralDataCubit>(context).records;
+    List<dynamic> favorites =
+        BlocProvider.of<UserInfoCubit>(context).user.favorites;
+    BlocProvider.of<FavoriteRecordsCubit>(context)
+        .fetchFavoriteRecords(favorites, records);
     AppNavigation.pushWithSlidingAnimation(
       context: context,
       view: const ProfileView(),

@@ -9,8 +9,10 @@ import 'package:spotify_app/core/configs/app_themes.dart';
 import 'package:spotify_app/core/utils/service_locator.dart';
 import 'package:spotify_app/features/choose_mode/presentation/manager/choose_mode_cubit/choose_mode_cubit.dart';
 import 'package:spotify_app/features/home/data/repo/home_repo/home_repo_imp.dart';
+import 'package:spotify_app/features/home/presentation/views/managers/favorite_records/favorite_records_cubit.dart';
+import 'package:spotify_app/features/home/presentation/views/managers/general_data_cubit/home_view_cubit.dart';
+import 'package:spotify_app/features/home/presentation/views/managers/user_info_cubit/user_info_cubit.dart';
 
-import 'package:spotify_app/features/home/presentation/views/managers/favourites_record_cubit/favorite_record_cubit.dart';
 import 'package:spotify_app/features/splash_view/presentation/views/splash_view.dart';
 import 'package:spotify_app/firebase_options.dart';
 import 'package:spotify_app/simple_bloc_observer.dart';
@@ -30,30 +32,37 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  final favoritesRecordCubit = FavoritesRecordCubit(getIt.get<HomeRepoImp>());
-  favoritesRecordCubit.fetchFavoriteRecordList();
+  final UserInfoCubit userInfoCubit = UserInfoCubit(getIt.get<HomeRepoImp>());
+  userInfoCubit.fetchFavoriteRecordList();
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
       builder: (context) => SpotifyApp(
-        favoritesRecordCubit: favoritesRecordCubit,
+        userInfoCubit: userInfoCubit,
       ),
     ),
   );
 }
 
 class SpotifyApp extends StatelessWidget {
-  const SpotifyApp({required this.favoritesRecordCubit, super.key});
-  final FavoritesRecordCubit favoritesRecordCubit;
+  const SpotifyApp({required this.userInfoCubit, super.key});
+  final UserInfoCubit userInfoCubit;
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ChooseModeCubit()),
+        BlocProvider<UserInfoCubit>.value(value: userInfoCubit),
         BlocProvider(
-            create: (context) =>
-                FavoritesRecordCubit(getIt.get<HomeRepoImp>())),
-        BlocProvider<FavoritesRecordCubit>.value(value: favoritesRecordCubit),
+          create: (context) => GeneralDataCubit(
+            getIt.get<HomeRepoImp>(),
+          )..getGeneralRecordsData(userInfoCubit.user.favorites),
+        ),
+        BlocProvider(
+          create: (context) => FavoriteRecordsCubit(
+            getIt.get<HomeRepoImp>(),
+          ),
+        )
       ],
       child: BlocBuilder<ChooseModeCubit, ThemeMode>(
         builder: (context, mode) {
