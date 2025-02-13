@@ -10,12 +10,12 @@ class CustomSliverAppBar extends StatelessWidget
       required this.prefixIcon,
       this.centerWidget,
       this.showMenuIcon = false,
-      this.onPressedMenuIcon,
+      this.onPressedProfileIcon,
       this.onPressedPrefixIcon});
   final IconData prefixIcon;
   final Widget? centerWidget;
   final bool showMenuIcon;
-  final void Function()? onPressedMenuIcon;
+  final void Function()? onPressedProfileIcon;
   final void Function()? onPressedPrefixIcon;
 
   @override
@@ -42,9 +42,9 @@ class CustomSliverAppBar extends StatelessWidget
       actions: [
         showMenuIcon
             ? IconButton(
-                onPressed: onPressedMenuIcon,
+                onPressed: onPressedProfileIcon,
                 icon: Icon(
-                  FontAwesomeIcons.ellipsisVertical,
+                  FontAwesomeIcons.house,
                   color: context.isDarkTheme
                       ? const Color(0xffDDDDDD)
                       : const Color(0xff7D7D7D),

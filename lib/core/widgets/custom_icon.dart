@@ -10,8 +10,8 @@ class CustomIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 32,
-      width: 32,
+      height: 35,
+      width: 35,
       decoration: BoxDecoration(
         color: color,
         shape: BoxShape.circle,
@@ -19,9 +19,11 @@ class CustomIcon extends StatelessWidget {
       child: Center(
         child: IconButton(
           onPressed: onPressed,
-          icon: Icon(
-            icon,
-            color: context.isDarkTheme ? Colors.white : Colors.black,
+          icon: FittedBox(
+            child: Icon(
+              icon,
+              color: context.isDarkTheme ? Colors.white : Colors.black,
+            ),
           ),
         ),
       ),

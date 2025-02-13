@@ -73,7 +73,7 @@ class RecordViewBody extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                      const FavouriteIconButton(),
+                      FavouriteIconButton(recordModel: record),
                     ],
                   ),
                 ),

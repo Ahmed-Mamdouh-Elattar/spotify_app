@@ -9,8 +9,9 @@ class GeneralDataCubit extends Cubit<GeneralDataState> {
       : _homeRepoImp = homeRepoImp,
         super(GeneralDataInitial());
   final HomeRepoImp _homeRepoImp;
-  void getGeneralRecordsData() async {
-    var data = await _homeRepoImp.getGeneralRecordsData();
+
+  void getGeneralRecordsData(List<dynamic> favorites) async {
+    var data = await _homeRepoImp.getGeneralRecordsData(favorites);
     data.fold((errMessage) {
       emit(GeneralDataFailure(errMessage: errMessage));
     }, (records) {

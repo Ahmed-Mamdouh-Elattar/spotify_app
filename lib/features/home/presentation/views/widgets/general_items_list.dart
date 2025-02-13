@@ -58,6 +58,7 @@ class GeneralItemsList extends StatelessWidget {
               bottom: 19, left: kPadding, right: kPadding),
           child: GeneralItem(
             record: RecordModel(
+              id: "",
               type: "",
               image: "",
               recordUrl: "",

@@ -1,14 +1,17 @@
 import 'package:spotify_app/features/home/data/models/record_model/time_duration.dart';
 
 class RecordModel {
+  final String? id;
   final String? type;
   final String? image;
   final String? recordUrl;
   final String? title;
   final String? personName;
-  TimeDuration duration;
+  final TimeDuration duration;
+  bool isFavourite = false;
 
   RecordModel({
+    required this.id,
     required this.type,
     required this.image,
     required this.recordUrl,
@@ -16,8 +19,10 @@ class RecordModel {
     required this.personName,
     required this.duration,
   });
-  factory RecordModel.fromJson(json) {
+  factory RecordModel.fromJson(
+      {required Map<String, dynamic> json, required String? id}) {
     return RecordModel(
+      id: id,
       type: json["type"],
       image: json["image"],
       recordUrl: json["record_url"],
@@ -27,5 +32,8 @@ class RecordModel {
         json["duration"],
       ),
     );
+  }
+  changeFavouriteValue() {
+    isFavourite = !isFavourite;
   }
 }

@@ -47,7 +47,9 @@ class GeneralItem extends StatelessWidget {
                   : const Color(0xff000000)),
         ),
         const Spacer(),
-        const FavouriteIconButton(),
+        FavouriteIconButton(
+          recordModel: record,
+        ),
       ],
     );
   }

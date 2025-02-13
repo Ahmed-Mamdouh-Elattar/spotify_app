@@ -4,7 +4,9 @@ import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:spotify_app/core/configs/app_text_style.dart';
 import 'package:spotify_app/core/configs/assets.dart';
 import 'package:spotify_app/core/helper/constants.dart';
+import 'package:spotify_app/core/utils/app_navigation.dart';
 import 'package:spotify_app/core/widgets/custom_sliver_app_bar.dart';
+import 'package:spotify_app/features/home/presentation/views/profile_view.dart';
 import 'package:spotify_app/features/home/presentation/views/widgets/custom_tab_bar.dart';
 import 'package:spotify_app/features/home/presentation/views/widgets/general_items_list.dart';
 
@@ -22,6 +24,9 @@ class HomeViewBody extends StatelessWidget {
           prefixIcon: FontAwesomeIcons.magnifyingGlass,
           centerWidget: SvgPicture.asset(Assets.imagesLogo),
           showMenuIcon: true,
+          onPressedProfileIcon: () {
+            navigateToProfileView(context);
+          },
         ),
         SliverToBoxAdapter(
           child: Padding(
@@ -60,6 +65,13 @@ class HomeViewBody extends StatelessWidget {
         ),
         const GeneralItemsList(),
       ],
+    );
+  }
+
+  void navigateToProfileView(BuildContext context) {
+    AppNavigation.pushWithSlidingAnimation(
+      context: context,
+      view: ProfileView(),
     );
   }
 }

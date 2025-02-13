@@ -53,6 +53,7 @@ class QuranAndPodcastList extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 14),
                   child: QuranAndPodcastItem(
                     record: RecordModel(
+                      id: "",
                       type: "type",
                       image: "https://fakeimg.pl/250x100/",
                       recordUrl: "recordUrl",

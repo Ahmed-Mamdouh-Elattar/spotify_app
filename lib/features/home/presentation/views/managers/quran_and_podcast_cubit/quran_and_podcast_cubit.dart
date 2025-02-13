@@ -9,8 +9,8 @@ class QuranAndPodcastCubit extends Cubit<QuranAndPodcastState> {
       : _homeRepoImp = homeRepoImp,
         super(QuranAndPodcastInitial());
   final HomeRepoImp _homeRepoImp;
-  void getQuranRecordsData() async {
-    var data = await _homeRepoImp.getQuranRecordsData();
+  void getQuranRecordsData(List<dynamic> favorites) async {
+    var data = await _homeRepoImp.getQuranRecordsData(favorites);
     data.fold((errMessage) {
       emit(QuranAndPodcastFailure(errMessage: errMessage));
     }, (records) {
@@ -18,8 +18,8 @@ class QuranAndPodcastCubit extends Cubit<QuranAndPodcastState> {
     });
   }
 
-  void getPodcastsRecordsData() async {
-    var data = await _homeRepoImp.getPodcastsRecordsData();
+  void getPodcastsRecordsData(List<dynamic> favorites) async {
+    var data = await _homeRepoImp.getPodcastsRecordsData(favorites);
     data.fold((errMessage) {
       emit(QuranAndPodcastFailure(errMessage: errMessage));
     }, (records) {

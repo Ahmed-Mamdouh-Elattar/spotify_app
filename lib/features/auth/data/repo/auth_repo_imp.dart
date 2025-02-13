@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:spotify_app/core/helper/add_user_to_cloud_firestore.dart';
-import 'package:spotify_app/core/helper/set_user_id.dart';
+
 import 'package:spotify_app/features/auth/data/repo/auth_repo.dart';
 
 class AuthRepoImp extends AuthRepo {
@@ -16,7 +16,6 @@ class AuthRepoImp extends AuthRepo {
         password: password,
       );
       addUserToCloudFireStore(name, email);
-      setuserIdInSharedPreference(email: email);
 
       return right(unit);
     } on FirebaseAuthException catch (e) {
