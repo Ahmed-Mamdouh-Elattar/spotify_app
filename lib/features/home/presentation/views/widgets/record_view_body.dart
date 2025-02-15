@@ -90,11 +90,9 @@ class RecordViewBody extends StatelessWidget {
             return IconButton(
               onPressed: () {
                 if (state is RecordLoading) {
-                  BlocProvider.of<RecordCubit>(context)
-                      .recordPlay(record.recordUrl!);
+                  BlocProvider.of<RecordCubit>(context).recordPlay();
                 } else if (state is RecordStop) {
-                  BlocProvider.of<RecordCubit>(context)
-                      .recordPlay(record.recordUrl!);
+                  BlocProvider.of<RecordCubit>(context).recordPlay();
                 } else if (state is RecordPlay) {
                   BlocProvider.of<RecordCubit>(context).recordStop();
                 }

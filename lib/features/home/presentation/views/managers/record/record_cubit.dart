@@ -1,7 +1,8 @@
 import 'dart:async';
+import 'dart:developer';
 
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio/just_audio.dart';
 
 part 'record_state.dart';
 
@@ -12,16 +13,20 @@ class RecordCubit extends Cubit<RecordState> {
   Duration _currentPosition = Duration.zero;
   StreamSubscription<Duration>? _stateController;
   final _player = AudioPlayer();
-  void recordPlay(String record) {
-    _player.play(UrlSource(record));
-    _stateController = _player.onPositionChanged.listen((currentPosition) {
-      if (currentPosition == Duration.zero) {
-        emit(RecordLoading());
-      } else {
-        _currentPosition = currentPosition;
-        emit(RecordPlay(currentPosition: currentPosition));
-      }
-    });
+  void recordPlay() {
+    _player.play();
+    _stateController = _player.positionStream.listen(_updateCurrentPosition);
+  }
+
+  void _updateCurrentPosition(currentPosition) async {
+    if (currentPosition == recordDuration) {
+      _currentPosition = Duration.zero;
+      await _player.seek(_currentPosition);
+      recordStop();
+    } else {
+      _currentPosition = currentPosition;
+      emit(RecordPlay(currentPosition: currentPosition));
+    }
   }
 
   void recordStop() async {
@@ -32,7 +37,7 @@ class RecordCubit extends Cubit<RecordState> {
   }
 
   void recordResume() async {
-    _player.resume();
+    _player.load();
 
     _stateController!.resume;
   }
@@ -52,9 +57,14 @@ class RecordCubit extends Cubit<RecordState> {
   }
 
   void recordLoad(String recordUrl) async {
-    await _player.setSourceUrl(recordUrl);
-    recordDuration = await _player.getDuration() ?? Duration.zero;
+    try {
+      await _player.setUrl(recordUrl);
+    } on Exception catch (e) {
+      log(e.toString());
+    }
+    recordDuration = _player.duration ?? Duration.zero;
     emit(RecordLoading());
+    recordPlay();
   }
 
   @override
