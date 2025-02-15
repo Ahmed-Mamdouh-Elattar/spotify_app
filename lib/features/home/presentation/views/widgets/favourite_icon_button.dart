@@ -19,21 +19,31 @@ class FavouriteIconButton extends StatelessWidget {
         return IconButton(
           onPressed: () async {
             await BlocProvider.of<UserInfoCubit>(context).addRecordToFavorite(
-                id: recordModel.id!, favorites: state.userInfo.favorites);
+                id: recordModel.id!, favorites: state.userInfo.favorites!);
             if (context.mounted) {
               List<RecordModel> records =
                   BlocProvider.of<GeneralDataCubit>(context).records;
-              List<dynamic> favorites = state.userInfo.favorites;
+              List<dynamic> favorites = state.userInfo.favorites!;
               BlocProvider.of<FavoriteRecordsCubit>(context)
                   .fetchFavoriteRecords(favorites, records);
             }
           },
-          icon: state.userInfo.favorites.contains(recordModel.id)
-              ? const Icon(
-                  Icons.favorite,
-                  color: Colors.red,
-                )
-              : const Icon(Icons.favorite_border_outlined),
+          icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 200),
+              transitionBuilder: (child, animation) => ScaleTransition(
+                    scale: animation,
+                    child: child,
+                  ),
+              child: Icon(
+                key: ValueKey<bool>(
+                    state.userInfo.favorites!.contains(recordModel.id)),
+                state.userInfo.favorites!.contains(recordModel.id)
+                    ? Icons.favorite
+                    : Icons.favorite_border,
+                color: state.userInfo.favorites!.contains(recordModel.id)
+                    ? Colors.red
+                    : Colors.grey,
+              )),
           iconSize: 30,
         );
       },
