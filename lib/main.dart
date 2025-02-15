@@ -6,9 +6,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:spotify_app/core/configs/app_themes.dart';
+import 'package:spotify_app/core/helper/get_if_user_logged_in.dart';
+import 'package:spotify_app/core/helper/get_user_id.dart';
 import 'package:spotify_app/core/utils/service_locator.dart';
 import 'package:spotify_app/features/choose_mode/presentation/manager/choose_mode_cubit/choose_mode_cubit.dart';
 import 'package:spotify_app/features/home/data/repo/home_repo/home_repo_imp.dart';
+import 'package:spotify_app/features/home/presentation/views/home_view.dart';
 import 'package:spotify_app/features/home/presentation/views/managers/favorite_records/favorite_records_cubit.dart';
 import 'package:spotify_app/features/home/presentation/views/managers/general_data_cubit/home_view_cubit.dart';
 import 'package:spotify_app/features/home/presentation/views/managers/user_info_cubit/user_info_cubit.dart';
@@ -21,32 +24,48 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
   setupGetIt();
-  HydratedBloc.storage = await HydratedStorage.build(
-    storageDirectory: kIsWeb
-        ? HydratedStorageDirectory.web
-        : HydratedStorageDirectory((await getTemporaryDirectory()).path),
-  );
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await intializeHydratedBloc();
+  await intializeFirebase();
+  final isLoggedIn = await getIfUserLoggedIn();
   final UserInfoCubit userInfoCubit = UserInfoCubit(getIt.get<HomeRepoImp>());
-  userInfoCubit.fetchFavoriteRecordList();
+  await checkIfUserRegisteredBeforeToFetchData(userInfoCubit, isLoggedIn);
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
       builder: (context) => SpotifyApp(
         userInfoCubit: userInfoCubit,
+        isLoggedIn: isLoggedIn,
       ),
     ),
   );
 }
 
+Future<void> checkIfUserRegisteredBeforeToFetchData(
+    UserInfoCubit userInfoCubit, bool isLoggedIn) async {
+  if (await getUserId() != "null" && isLoggedIn) {
+    userInfoCubit.fetchUserInfo();
+  }
+}
+
+Future<void> intializeFirebase() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+}
+
+Future<void> intializeHydratedBloc() async {
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: kIsWeb
+        ? HydratedStorageDirectory.web
+        : HydratedStorageDirectory((await getTemporaryDirectory()).path),
+  );
+}
+
 class SpotifyApp extends StatelessWidget {
-  const SpotifyApp({required this.userInfoCubit, super.key});
+  const SpotifyApp(
+      {required this.userInfoCubit, required this.isLoggedIn, super.key});
   final UserInfoCubit userInfoCubit;
+  final bool isLoggedIn;
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -56,7 +75,7 @@ class SpotifyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => GeneralDataCubit(
             getIt.get<HomeRepoImp>(),
-          )..getGeneralRecordsData(userInfoCubit.user.favorites),
+          )..getGeneralRecordsData(userInfoCubit.user.favorites ?? []),
         ),
         BlocProvider(
           create: (context) => FavoriteRecordsCubit(
@@ -71,7 +90,7 @@ class SpotifyApp extends StatelessWidget {
             theme: AppThemes.lightTheme,
             darkTheme: AppThemes.darkTheme,
             themeMode: mode,
-            home: const SplashView(),
+            home: isLoggedIn ? const HomeView() : const SplashView(),
           );
         },
       ),

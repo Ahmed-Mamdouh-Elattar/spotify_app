@@ -17,6 +17,7 @@ import 'package:spotify_app/features/auth/presentation/views/widgets/ask_with_te
 import 'package:spotify_app/features/auth/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:spotify_app/features/auth/presentation/views/widgets/password_text_form_field.dart';
 import 'package:spotify_app/features/home/presentation/views/home_view.dart';
+import 'package:spotify_app/features/home/presentation/views/managers/user_info_cubit/user_info_cubit.dart';
 
 class SignInViewBody extends StatefulWidget {
   const SignInViewBody({super.key});
@@ -31,14 +32,18 @@ class _SignInViewBodyState extends State<SignInViewBody> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignInCubit, SignInState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state is SignInFailure) {
           showSnackBar(context, content: state.errMessage);
         } else if (state is SignInSucceeded) {
-          AppNavigation.pushAndRemoveAllWithFadingAnimation(
-            context: context,
-            view: const HomeView(),
-          );
+          await BlocProvider.of<UserInfoCubit>(context)
+              .fetchUserInfo(email: email);
+          if (context.mounted) {
+            AppNavigation.pushAndRemoveAllWithFadingAnimation(
+              context: context,
+              view: const HomeView(),
+            );
+          }
         }
       },
       builder: (context, state) {
@@ -90,7 +95,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                         "Sign In",
                         style: AppTextStyle.styleBold20(),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
                           BlocProvider.of<SignInCubit>(context).signInUser(

@@ -26,18 +26,18 @@ class UserInfoCubit extends Cubit<UserInfoState> {
       favorites: favorites,
     );
     if (isRecordInFavorite) {
-      user.favorites.remove(id);
+      user.favorites!.remove(id);
       emit(UserInfoNewRecords(userInfo: user));
     } else {
-      user.favorites.add(id);
+      user.favorites!.add(id);
       emit(UserInfoNewRecords(userInfo: user));
     }
     await _homeRepoImp.addOrDeleteRecordFromFavorites(
         recordId: id, isRecordInFavourite: isRecordInFavorite);
   }
 
-  void fetchFavoriteRecordList() async {
-    user = await _homeRepoImp.fetchUserInfo();
+  Future<void> fetchUserInfo({String? email}) async {
+    user = await _homeRepoImp.fetchUserInfo(email: email);
     emit(UserInfoNewRecords(userInfo: user));
   }
 }

@@ -36,7 +36,7 @@ class _CustomTabBarState extends State<CustomTabBar>
       indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
       onTap: (value) {
         List<dynamic> favoriteRecords =
-            BlocProvider.of<UserInfoCubit>(context).user.favorites;
+            BlocProvider.of<UserInfoCubit>(context).user.favorites!;
         if (value == 0) {
           BlocProvider.of<QuranAndPodcastCubit>(context)
               .getQuranRecordsData(favoriteRecords);

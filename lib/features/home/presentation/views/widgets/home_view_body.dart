@@ -77,7 +77,7 @@ class HomeViewBody extends StatelessWidget {
     List<RecordModel> records =
         BlocProvider.of<GeneralDataCubit>(context).records;
     List<dynamic> favorites =
-        BlocProvider.of<UserInfoCubit>(context).user.favorites;
+        BlocProvider.of<UserInfoCubit>(context).user.favorites!;
     BlocProvider.of<FavoriteRecordsCubit>(context)
         .fetchFavoriteRecords(favorites, records);
     AppNavigation.pushWithSlidingAnimation(

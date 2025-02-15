@@ -1,7 +1,7 @@
 class UserModel {
   final String email;
   final String name;
-  List<dynamic> favorites = [];
+  List<dynamic>? favorites;
 
   UserModel({required this.email, required this.name, required this.favorites});
 
@@ -9,7 +9,7 @@ class UserModel {
     return UserModel(
       email: json['email'],
       name: json['name'],
-      favorites: json['favorites'],
+      favorites: json['favorites'] ?? [],
     );
   }
 }

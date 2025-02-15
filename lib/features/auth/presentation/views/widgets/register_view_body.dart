@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:spotify_app/core/configs/app_text_style.dart';
 import 'package:spotify_app/core/helper/constants.dart';
+import 'package:spotify_app/core/helper/get_user_id.dart';
 import 'package:spotify_app/core/helper/show_snack_bar.dart';
 import 'package:spotify_app/core/helper/validate_email.dart';
 import 'package:spotify_app/core/helper/validate_name.dart';
@@ -15,6 +16,7 @@ import 'package:spotify_app/features/auth/presentation/views/widgets/ask_with_te
 import 'package:spotify_app/features/auth/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:spotify_app/features/auth/presentation/views/widgets/password_text_form_field.dart';
 import 'package:spotify_app/features/home/presentation/views/home_view.dart';
+import 'package:spotify_app/features/home/presentation/views/managers/user_info_cubit/user_info_cubit.dart';
 
 class RegisterViewBody extends StatefulWidget {
   const RegisterViewBody({super.key});
@@ -32,14 +34,17 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RegisterCubit, RegisterState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state is RegisterFailure) {
           showSnackBar(context, content: state.errMessage);
         } else if (state is RegisterSucceeded) {
-          AppNavigation.pushAndRemoveAllWithFadingAnimation(
-            context: context,
-            view: const HomeView(),
-          );
+          await fetchUserData(context);
+          if (context.mounted) {
+            AppNavigation.pushAndRemoveAllWithFadingAnimation(
+              context: context,
+              view: const HomeView(),
+            );
+          }
         }
       },
       builder: (context, state) {
@@ -103,9 +108,10 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         "Create Account",
                         style: AppTextStyle.styleBold20(),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
+
                           BlocProvider.of<RegisterCubit>(context).registerUser(
                             email: email,
                             password: password,
@@ -138,5 +144,13 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
         );
       },
     );
+  }
+
+  Future<void> fetchUserData(BuildContext context) async {
+    if (await getUserId() != "null") {
+      if (context.mounted) {
+        await BlocProvider.of<UserInfoCubit>(context).fetchUserInfo();
+      }
+    }
   }
 }

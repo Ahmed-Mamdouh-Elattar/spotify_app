@@ -4,6 +4,7 @@ import 'package:spotify_app/core/helper/record_favorites_function.dart';
 import 'package:spotify_app/core/helper/constants.dart';
 
 import 'package:spotify_app/core/helper/get_user_id.dart';
+import 'package:spotify_app/core/helper/set_user_id.dart';
 import 'package:spotify_app/features/home/data/models/record_model/record_model.dart';
 import 'package:spotify_app/features/home/data/models/user_model/user_model.dart';
 import 'package:spotify_app/features/home/data/repo/home_repo/home_repo.dart';
@@ -72,13 +73,24 @@ class HomeRepoImp extends HomeRepo {
   }
 
   @override
-  Future<UserModel> fetchUserInfo() async {
-    var data = await FirebaseFirestore.instance
-        .collection(kUsersCollection)
-        .doc(await getUserId())
-        .get();
-    UserModel user = UserModel.fromJson(data.data()!);
-    return user;
+  Future<UserModel> fetchUserInfo({String? email}) async {
+    UserModel user;
+    if (email == null && await getUserId() != "null") {
+      var data = await FirebaseFirestore.instance
+          .collection(kUsersCollection)
+          .doc(await getUserId())
+          .get();
+      user = UserModel.fromJson(data.data()!);
+      return user;
+    } else {
+      var data = await FirebaseFirestore.instance
+          .collection(kUsersCollection)
+          .where("email", isEqualTo: email)
+          .get();
+      user = UserModel.fromJson(data.docs[0].data());
+      await setuserIdInSharedPreference(id: data.docs.first.id);
+      return user;
+    }
   }
 
   @override

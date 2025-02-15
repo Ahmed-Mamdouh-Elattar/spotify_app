@@ -2,6 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:spotify_app/core/helper/add_user_to_cloud_firestore.dart';
 
+import 'package:spotify_app/core/helper/set_user_is_logged_in.dart';
+
 import 'package:spotify_app/features/auth/data/repo/auth_repo.dart';
 
 class AuthRepoImp extends AuthRepo {
@@ -15,7 +17,8 @@ class AuthRepoImp extends AuthRepo {
         email: email,
         password: password,
       );
-      addUserToCloudFireStore(name, email);
+      await addUserToCloudFireStore(name, email);
+      await setUserIsLogged(isLogged: true);
 
       return right(unit);
     } on FirebaseAuthException catch (e) {
@@ -39,10 +42,16 @@ class AuthRepoImp extends AuthRepo {
         email: email,
         password: password,
       );
+      await setUserIsLogged(isLogged: true);
+
       return right(unit);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'unknown-error') {
         return left("Invalid Email Or Password");
+      } else if (e.code == "invalid-credential") {
+        {
+          return left("User not Found");
+        }
       } else {
         return left(e.code);
       }

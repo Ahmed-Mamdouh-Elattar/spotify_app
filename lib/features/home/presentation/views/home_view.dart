@@ -13,7 +13,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<dynamic> favoriteRecords =
-        BlocProvider.of<UserInfoCubit>(context).user.favorites;
+        BlocProvider.of<UserInfoCubit>(context).user.favorites!;
     return MultiBlocProvider(
       providers: [
         BlocProvider(
