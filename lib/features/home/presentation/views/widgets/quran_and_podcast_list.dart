@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:spotify_app/core/helper/check_if_new_record_and_load_it.dart';
 import 'package:spotify_app/core/utils/app_navigation.dart';
 import 'package:spotify_app/features/home/data/models/record_model/record_model.dart';
 import 'package:spotify_app/features/home/data/models/record_model/time_duration.dart';
@@ -30,12 +31,15 @@ class QuranAndPodcastList extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 14),
                 child: MaterialButton(
                   padding: EdgeInsets.zero,
-                  onPressed: () => AppNavigation.pushWithSlidingAnimation(
-                    context: context,
-                    view: RecordView(
-                      record: state.records[index],
-                    ),
-                  ),
+                  onPressed: () {
+                    checkIfNewRecordAndLoadIt(state.records[index], context);
+                    AppNavigation.pushWithSlidingAnimation(
+                      context: context,
+                      view: RecordView(
+                        record: state.records[index],
+                      ),
+                    );
+                  },
                   child: QuranAndPodcastItem(
                     record: state.records[index],
                   ),

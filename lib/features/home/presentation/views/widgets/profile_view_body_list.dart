@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:spotify_app/core/configs/app_text_style.dart';
+import 'package:spotify_app/core/helper/check_if_new_record_and_load_it.dart';
 import 'package:spotify_app/core/helper/constants.dart';
 import 'package:spotify_app/core/helper/create_fake_record_model.dart';
 import 'package:spotify_app/core/utils/app_navigation.dart';
@@ -25,12 +26,15 @@ class ProfileViewBodyList extends StatelessWidget {
             itemBuilder: (context, index) {
               return MaterialButton(
                 padding: EdgeInsets.zero,
-                onPressed: () => AppNavigation.pushWithSlidingAnimation(
-                  context: context,
-                  view: RecordView(
-                    record: state.records[index],
-                  ),
-                ),
+                onPressed: () {
+                  checkIfNewRecordAndLoadIt(state.records[index], context);
+                  AppNavigation.pushWithSlidingAnimation(
+                    context: context,
+                    view: RecordView(
+                      record: state.records[index],
+                    ),
+                  );
+                },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: kPadding),
                   child: ProfileViewBodyItem(
