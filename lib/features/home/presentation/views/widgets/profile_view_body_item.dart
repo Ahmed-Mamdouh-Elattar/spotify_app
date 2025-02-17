@@ -18,15 +18,18 @@ class ProfileViewBodyItem extends StatelessWidget {
           height: 60,
           child: Row(
             children: [
-              AspectRatio(
-                aspectRatio: 1,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: CachedNetworkImage(
-                    fit: BoxFit.fill,
-                    imageUrl: recordModel.image!,
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
+              Hero(
+                tag: recordModel.id!,
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: CachedNetworkImage(
+                      fit: BoxFit.fill,
+                      imageUrl: recordModel.image!,
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                    ),
                   ),
                 ),
               ),

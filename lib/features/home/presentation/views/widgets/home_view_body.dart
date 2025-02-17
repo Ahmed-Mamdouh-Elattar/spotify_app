@@ -8,10 +8,11 @@ import 'package:spotify_app/core/helper/constants.dart';
 import 'package:spotify_app/core/utils/app_navigation.dart';
 import 'package:spotify_app/core/widgets/custom_sliver_app_bar.dart';
 import 'package:spotify_app/features/home/data/models/record_model/record_model.dart';
-import 'package:spotify_app/features/home/presentation/views/managers/favorite_records/favorite_records_cubit.dart';
-import 'package:spotify_app/features/home/presentation/views/managers/general_data_cubit/home_view_cubit.dart';
-import 'package:spotify_app/features/home/presentation/views/managers/user_info_cubit/user_info_cubit.dart';
+import 'package:spotify_app/features/home/presentation/managers/favorite_records/favorite_records_cubit.dart';
+import 'package:spotify_app/features/home/presentation/managers/general_data_cubit/home_view_cubit.dart';
+import 'package:spotify_app/features/home/presentation/managers/user_info_cubit/user_info_cubit.dart';
 import 'package:spotify_app/features/home/presentation/views/profile_view.dart';
+import 'package:spotify_app/features/home/presentation/views/search_view.dart';
 import 'package:spotify_app/features/home/presentation/views/widgets/custom_tab_bar.dart';
 import 'package:spotify_app/features/home/presentation/views/widgets/general_items_list.dart';
 
@@ -29,6 +30,8 @@ class HomeViewBody extends StatelessWidget {
           prefixIcon: FontAwesomeIcons.magnifyingGlass,
           centerWidget: SvgPicture.asset(Assets.imagesLogo),
           showMenuIcon: true,
+          onPressedPrefixIcon: () => AppNavigation.pushWithFadingAnimation(
+              context: context, view: const SearchView()),
           onPressedProfileIcon: () {
             navigateToProfileView(context);
           },

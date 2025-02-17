@@ -5,7 +5,7 @@ import 'package:spotify_app/core/configs/app_color.dart';
 import 'package:spotify_app/core/configs/app_text_style.dart';
 import 'package:spotify_app/core/helper/constants.dart';
 import 'package:spotify_app/features/home/data/models/record_model/record_model.dart';
-import 'package:spotify_app/features/home/presentation/views/managers/record/record_cubit.dart';
+import 'package:spotify_app/features/home/presentation/managers/record/record_cubit.dart';
 import 'package:spotify_app/features/home/presentation/views/widgets/favourite_icon_button.dart';
 import 'package:spotify_app/features/home/presentation/views/widgets/record_slider_with_time.dart';
 
@@ -27,15 +27,18 @@ class RecordViewBody extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 6,
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
-                      child: CachedNetworkImage(
-                        fit: BoxFit.fill,
-                        imageUrl: record.image!,
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
+                  child: Hero(
+                    tag: record.id!,
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(30),
+                        child: CachedNetworkImage(
+                          fit: BoxFit.fill,
+                          imageUrl: record.image!,
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                        ),
                       ),
                     ),
                   ),
@@ -81,7 +84,7 @@ class RecordViewBody extends StatelessWidget {
             ),
           ),
         ),
-        const Expanded(
+        const Flexible(
           flex: 2,
           child: RecordSliderWithTime(),
         ),

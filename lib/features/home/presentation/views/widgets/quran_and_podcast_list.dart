@@ -5,7 +5,7 @@ import 'package:spotify_app/core/helper/check_if_new_record_and_load_it.dart';
 import 'package:spotify_app/core/utils/app_navigation.dart';
 import 'package:spotify_app/features/home/data/models/record_model/record_model.dart';
 import 'package:spotify_app/features/home/data/models/record_model/time_duration.dart';
-import 'package:spotify_app/features/home/presentation/views/managers/quran_and_podcast_cubit/quran_and_podcast_cubit.dart';
+import 'package:spotify_app/features/home/presentation/managers/quran_and_podcast_cubit/quran_and_podcast_cubit.dart';
 import 'package:spotify_app/features/home/presentation/views/record_view.dart';
 import 'package:spotify_app/features/home/presentation/views/widgets/quran_and_podcast_item.dart';
 

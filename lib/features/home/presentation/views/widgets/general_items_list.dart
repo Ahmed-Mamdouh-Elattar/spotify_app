@@ -5,7 +5,7 @@ import 'package:spotify_app/core/helper/check_if_new_record_and_load_it.dart';
 import 'package:spotify_app/core/helper/constants.dart';
 import 'package:spotify_app/core/helper/create_fake_record_model.dart';
 import 'package:spotify_app/core/utils/app_navigation.dart';
-import 'package:spotify_app/features/home/presentation/views/managers/general_data_cubit/home_view_cubit.dart';
+import 'package:spotify_app/features/home/presentation/managers/general_data_cubit/home_view_cubit.dart';
 import 'package:spotify_app/features/home/presentation/views/record_view.dart';
 import 'package:spotify_app/features/home/presentation/views/widgets/general_item.dart';
 

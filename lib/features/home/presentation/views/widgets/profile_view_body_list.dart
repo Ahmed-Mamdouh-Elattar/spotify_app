@@ -6,7 +6,7 @@ import 'package:spotify_app/core/helper/check_if_new_record_and_load_it.dart';
 import 'package:spotify_app/core/helper/constants.dart';
 import 'package:spotify_app/core/helper/create_fake_record_model.dart';
 import 'package:spotify_app/core/utils/app_navigation.dart';
-import 'package:spotify_app/features/home/presentation/views/managers/favorite_records/favorite_records_cubit.dart';
+import 'package:spotify_app/features/home/presentation/managers/favorite_records/favorite_records_cubit.dart';
 import 'package:spotify_app/features/home/presentation/views/record_view.dart';
 import 'package:spotify_app/features/home/presentation/views/widgets/profile_view_body_item.dart';
 
@@ -28,7 +28,7 @@ class ProfileViewBodyList extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 onPressed: () {
                   checkIfNewRecordAndLoadIt(state.records[index], context);
-                  AppNavigation.pushWithSlidingAnimation(
+                  AppNavigation.push(
                     context: context,
                     view: RecordView(
                       record: state.records[index],

@@ -4,7 +4,7 @@ import 'package:spotify_app/core/configs/app_text_style.dart';
 import 'package:spotify_app/core/helper/constants.dart';
 import 'package:spotify_app/core/helper/format_duration.dart';
 import 'package:spotify_app/core/helper/is_dark_theme_extention.dart';
-import 'package:spotify_app/features/home/presentation/views/managers/record/record_cubit.dart';
+import 'package:spotify_app/features/home/presentation/managers/record/record_cubit.dart';
 
 class RecordSliderWithTime extends StatelessWidget {
   const RecordSliderWithTime({

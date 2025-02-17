@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotify_app/core/configs/app_color.dart';
 import 'package:spotify_app/core/configs/app_text_style.dart';
 import 'package:spotify_app/core/helper/is_dark_theme_extention.dart';
-import 'package:spotify_app/features/home/presentation/views/managers/quran_and_podcast_cubit/quran_and_podcast_cubit.dart';
-import 'package:spotify_app/features/home/presentation/views/managers/user_info_cubit/user_info_cubit.dart';
+import 'package:spotify_app/features/home/presentation/managers/quran_and_podcast_cubit/quran_and_podcast_cubit.dart';
+import 'package:spotify_app/features/home/presentation/managers/user_info_cubit/user_info_cubit.dart';
 
 class CustomTabBar extends StatefulWidget {
   const CustomTabBar({super.key});

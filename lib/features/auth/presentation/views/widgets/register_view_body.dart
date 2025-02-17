@@ -16,7 +16,7 @@ import 'package:spotify_app/features/auth/presentation/views/widgets/ask_with_te
 import 'package:spotify_app/features/auth/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:spotify_app/features/auth/presentation/views/widgets/password_text_form_field.dart';
 import 'package:spotify_app/features/home/presentation/views/home_view.dart';
-import 'package:spotify_app/features/home/presentation/views/managers/user_info_cubit/user_info_cubit.dart';
+import 'package:spotify_app/features/home/presentation/managers/user_info_cubit/user_info_cubit.dart';
 
 class RegisterViewBody extends StatefulWidget {
   const RegisterViewBody({super.key});

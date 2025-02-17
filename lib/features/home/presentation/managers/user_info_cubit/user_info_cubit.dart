@@ -3,7 +3,7 @@ import 'package:spotify_app/core/helper/get_user_id.dart';
 import 'package:spotify_app/core/helper/record_favorites_function.dart';
 import 'package:spotify_app/features/home/data/models/user_model/user_model.dart';
 import 'package:spotify_app/features/home/data/repo/home_repo/home_repo_imp.dart';
-import 'package:spotify_app/features/home/presentation/views/managers/user_info_cubit/user_info_state.dart';
+import 'package:spotify_app/features/home/presentation/managers/user_info_cubit/user_info_state.dart';
 
 class UserInfoCubit extends Cubit<UserInfoState> {
   UserInfoCubit(this._homeRepoImp)

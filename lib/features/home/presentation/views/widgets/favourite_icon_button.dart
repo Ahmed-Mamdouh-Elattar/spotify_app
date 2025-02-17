@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotify_app/features/home/data/models/record_model/record_model.dart';
-import 'package:spotify_app/features/home/presentation/views/managers/favorite_records/favorite_records_cubit.dart';
-import 'package:spotify_app/features/home/presentation/views/managers/general_data_cubit/home_view_cubit.dart';
-import 'package:spotify_app/features/home/presentation/views/managers/user_info_cubit/user_info_cubit.dart';
-import 'package:spotify_app/features/home/presentation/views/managers/user_info_cubit/user_info_state.dart';
+import 'package:spotify_app/features/home/presentation/managers/favorite_records/favorite_records_cubit.dart';
+import 'package:spotify_app/features/home/presentation/managers/general_data_cubit/home_view_cubit.dart';
+import 'package:spotify_app/features/home/presentation/managers/user_info_cubit/user_info_cubit.dart';
+import 'package:spotify_app/features/home/presentation/managers/user_info_cubit/user_info_state.dart';
 
 class FavouriteIconButton extends StatelessWidget {
   const FavouriteIconButton({

@@ -6,7 +6,7 @@ import 'package:spotify_app/core/configs/assets.dart';
 import 'package:spotify_app/core/helper/constants.dart';
 import 'package:spotify_app/core/helper/is_dark_theme_extention.dart';
 import 'package:spotify_app/features/home/data/models/user_model/user_model.dart';
-import 'package:spotify_app/features/home/presentation/views/managers/user_info_cubit/user_info_cubit.dart';
+import 'package:spotify_app/features/home/presentation/managers/user_info_cubit/user_info_cubit.dart';
 import 'package:spotify_app/features/home/presentation/views/widgets/profile_view_appbar.dart';
 
 class ProfileAppBarWithUserInfo extends StatelessWidget {

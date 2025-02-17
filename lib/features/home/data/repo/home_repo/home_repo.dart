@@ -14,4 +14,7 @@ abstract class HomeRepo {
       {required String recordId, required bool isRecordInFavourite});
   List<RecordModel> fetchFavoriteRecordList(
       List<dynamic> favorites, List<RecordModel> records);
+
+  Either<String, List<RecordModel>> searchRecords(
+      {required String recordTitle, required List<RecordModel> records});
 }

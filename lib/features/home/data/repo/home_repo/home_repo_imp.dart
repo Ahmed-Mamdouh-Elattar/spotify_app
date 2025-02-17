@@ -106,4 +106,16 @@ class HomeRepoImp extends HomeRepo {
     }
     return favoriteRecords;
   }
+
+  @override
+  Either<String, List<RecordModel>> searchRecords(
+      {required String recordTitle, required List<RecordModel> records}) {
+    List<RecordModel> searchRecords = records
+        .where((record) =>
+            record.title!.toLowerCase().contains(recordTitle.toLowerCase()))
+        .toList();
+    return searchRecords.isEmpty
+        ? left("No matches found")
+        : right(searchRecords);
+  }
 }
