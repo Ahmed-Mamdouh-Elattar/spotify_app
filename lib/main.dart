@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:path_provider/path_provider.dart';
@@ -11,19 +12,21 @@ import 'package:spotify_app/core/helper/get_if_user_logged_in.dart';
 import 'package:spotify_app/core/helper/get_user_id.dart';
 import 'package:spotify_app/core/utils/service_locator.dart';
 import 'package:spotify_app/features/choose_mode/presentation/manager/choose_mode_cubit/choose_mode_cubit.dart';
+import 'package:spotify_app/features/choose_mode/presentation/views/get_started_view.dart';
 import 'package:spotify_app/features/home/data/repo/home_repo/home_repo_imp.dart';
 import 'package:spotify_app/features/home/presentation/views/home_view.dart';
 import 'package:spotify_app/features/home/presentation/managers/favorite_records/favorite_records_cubit.dart';
 import 'package:spotify_app/features/home/presentation/managers/general_data_cubit/home_view_cubit.dart';
 import 'package:spotify_app/features/home/presentation/managers/record/record_cubit.dart';
 import 'package:spotify_app/features/home/presentation/managers/user_info_cubit/user_info_cubit.dart';
-import 'package:spotify_app/features/splash_view/presentation/views/splash_view.dart';
 import 'package:spotify_app/firebase_options.dart';
 import 'package:spotify_app/simple_bloc_observer.dart';
 
 void main() async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   Bloc.observer = SimpleBlocObserver();
-  WidgetsFlutterBinding.ensureInitialized();
+
   setupGetIt();
   await intializeHydratedBloc();
   await intializeFirebase();
@@ -31,6 +34,7 @@ void main() async {
   final isLoggedIn = await getIfUserLoggedIn();
   final UserInfoCubit userInfoCubit = UserInfoCubit(getIt.get<HomeRepoImp>());
   await checkIfUserRegisteredBeforeToFetchData(userInfoCubit, isLoggedIn);
+  FlutterNativeSplash.remove();
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
@@ -101,7 +105,7 @@ class SpotifyApp extends StatelessWidget {
             theme: AppThemes.lightTheme,
             darkTheme: AppThemes.darkTheme,
             themeMode: mode,
-            home: isLoggedIn ? const HomeView() : const SplashView(),
+            home: isLoggedIn ? const HomeView() : const GetStartedView(),
           );
         },
       ),

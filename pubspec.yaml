@@ -39,6 +39,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.0.0
+  flutter_native_splash: ^2.4.4
   flutter_svg: ^2.0.10+1
   font_awesome_icon_class: ^0.0.6
   get_it: ^8.0.1
