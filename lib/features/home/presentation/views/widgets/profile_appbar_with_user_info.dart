@@ -18,7 +18,7 @@ class ProfileAppBarWithUserInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     UserModel user = BlocProvider.of<UserInfoCubit>(context).user;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: kPadding),
+      padding: const EdgeInsets.only(left: kPadding),
       decoration: BoxDecoration(
         color: context.isDarkTheme ? const Color(0xff2C2B2B) : Colors.white,
         borderRadius: const BorderRadius.only(

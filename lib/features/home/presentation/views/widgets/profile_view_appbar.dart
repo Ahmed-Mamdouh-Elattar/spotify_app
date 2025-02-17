@@ -4,6 +4,7 @@ import 'package:spotify_app/core/configs/app_text_style.dart';
 import 'package:spotify_app/core/helper/is_dark_theme_extention.dart';
 import 'package:spotify_app/core/utils/app_navigation.dart';
 import 'package:spotify_app/core/widgets/custom_icon.dart';
+import 'package:spotify_app/features/home/presentation/views/widgets/logout_alert_dialog.dart';
 
 class ProfileViewAppBar extends StatelessWidget {
   const ProfileViewAppBar({
@@ -28,8 +29,22 @@ class ProfileViewAppBar extends StatelessWidget {
           style: AppTextStyle.styleBold17(),
         ),
         const Spacer(),
-        const SizedBox(),
+        IconButton(
+          onPressed: () {
+            showAlertDialog(context);
+          },
+          icon: const Icon(
+            Icons.logout,
+          ),
+        ),
       ]),
+    );
+  }
+
+  void showAlertDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => const LogoutAlertDialog(),
     );
   }
 }
