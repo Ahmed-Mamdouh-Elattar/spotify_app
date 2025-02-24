@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -35,15 +34,19 @@ void main() async {
   final UserInfoCubit userInfoCubit = UserInfoCubit(getIt.get<HomeRepoImp>());
   await checkIfUserRegisteredBeforeToFetchData(userInfoCubit, isLoggedIn);
   FlutterNativeSplash.remove();
+
   runApp(
-    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (context) => SpotifyApp(
-        userInfoCubit: userInfoCubit,
-        isLoggedIn: isLoggedIn,
-      ),
-    ),
+    SpotifyApp(userInfoCubit: userInfoCubit, isLoggedIn: isLoggedIn),
   );
+  // runApp(
+  //   DevicePreview(
+  //     enabled: !kReleaseMode,
+  //     builder: (context) => SpotifyApp(
+  //       userInfoCubit: userInfoCubit,
+  //       isLoggedIn: isLoggedIn,
+  //     ),
+  //   ),
+  // );
 }
 
 Future<void> initializeJustAudioBackground() async {
