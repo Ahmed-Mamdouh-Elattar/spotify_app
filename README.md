@@ -20,7 +20,7 @@ A Flutter-based music player app that allows users to stream and manage their fa
 
 custom splash screen using `flutter_native_splash` package:
 
-![splash_screen](assets/readme_images/readme_images/splash_screen.jpg)
+![splash_screen](assets/readme_images/splash_screen.jpg)
 
 ## Theming Screen 🎨
 
