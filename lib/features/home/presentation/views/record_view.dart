@@ -17,12 +17,6 @@ class RecordView extends StatelessWidget {
       appBar: CustomAppBar(
         prefixIcon: Icons.arrow_back_ios_new,
         onPressedPrefixIcon: () => AppNavigation.pop(context),
-        centerWidget: Text(
-          "Now Playing",
-          style: AppTextStyle.styleBold18().copyWith(
-            color: Colors.black,
-          ),
-        ),
       ),
       body: RecordViewBody(
         record: record,
