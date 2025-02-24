@@ -16,68 +16,6 @@ A Flutter-based music player app that allows users to stream and manage their fa
 - 🌗 **Theme Changing**: Users can switch between light and dark themes, achieved using `hydrated_bloc`.
 - 🔊 **Media Notification Support**: Background audio playback displays a media notification with controls using `just_audio_background`.
 
-## Splash Screen 📱
-
-custom splash screen using `flutter_native_splash` package:
-
-![splash_screen](assets/readme_images/splash_screen.jpg)
-
-## Theming Screen 🎨
-
-Users can switch between **Dark Mode** and **Light Mode** during onboarding.
-
-### Theme Selection Screen
-
-![theme_switching_screen](assets/readme_images/theme_switching_screen.jpg)
-
-## Authentication Feature 🔐
-
-Users can securely log in and register using Firebase Authentication with email and password.
-
-### Sign In Screen
-
-![sign_in_screen](assets/readme_images/sign_in_screen.jpg)
-
-### Registration Screen
-
-![register_screen](assets/readme_images/register_screen.jpg)
-
-
-## Home Screen 📱
-
-The home screen of the app features various categories like Quran, Podcasts, and General music tracks. Below is a preview of the home screen:
-
-![home_screen](assets/readme_images/home_screen.jpg)
-
-## Playing Screen 🎵
-
-Below is a preview of the "Playing" screen:
-
-![playing_screen](assets/readme_images/playing_screen.jpg)
-
-### Background Playback 🔄
-
-Music continues playing even when the app is minimized, allowing users to enjoy their audio experience without interruption.
-
-![background_playing](assets/readme_images/background_playing.jpg)
-
-## Search Feature 🔍
-
-The search screen allows users to find records efficiently. Below is a preview:
-
-![search_screen](assets/readme_images/search_screen.jpg)
-
-## Favorites Feature ❤️
-
-Users can mark songs as favorites, and they will be displayed in the profile screen. Below is a preview of the profile screen:
-
-![profile__screen](assets/readme_images/profile_screen.jpg)
-
-## Logout Feature 🚪
-
-Users can securely log out from the profile screen. When they tap the logout button, a confirmation dialog appears, asking if they are sure they want to log out. Upon confirmation, the user is signed out and redirected to the login screen.
-
-![logout](assets/readme_images/logout.jpg)
 
 ## Project Structure 📂
 
@@ -140,4 +78,70 @@ Example: **Home Feature**
    ```bash
    flutter run
    ```
+
+
+# Screens UI
+
+## Splash Screen 📱
+
+custom splash screen using `flutter_native_splash` package:
+
+![splash_screen](assets/readme_images/splash_screen.jpg)
+
+## Theming Screen 🎨
+
+Users can switch between **Dark Mode** and **Light Mode** during onboarding.
+
+### Theme Selection Screen
+
+![theme_switching_screen](assets/readme_images/theme_switching_screen.jpg)
+
+## Authentication Feature 🔐
+
+Users can securely log in and register using Firebase Authentication with email and password.
+
+### Sign In Screen
+
+![sign_in_screen](assets/readme_images/sign_in_screen.jpg)
+
+### Registration Screen
+
+![register_screen](assets/readme_images/register_screen.jpg)
+
+
+## Home Screen 📱
+
+The home screen of the app features various categories like Quran, Podcasts, and General music tracks. Below is a preview of the home screen:
+
+![home_screen](assets/readme_images/home_screen.jpg)
+
+## Playing Screen 🎵
+
+Below is a preview of the "Playing" screen:
+
+![playing_screen](assets/readme_images/playing_screen.jpg)
+
+### Background Playback 🔄
+
+Music continues playing even when the app is minimized, allowing users to enjoy their audio experience without interruption.
+
+![background_playing](assets/readme_images/background_playing.jpg)
+
+## Search Feature 🔍
+
+The search screen allows users to find records efficiently. Below is a preview:
+
+![search_screen](assets/readme_images/search_screen.jpg)
+
+## Favorites Feature ❤️
+
+Users can mark songs as favorites, and they will be displayed in the profile screen. Below is a preview of the profile screen:
+
+![profile__screen](assets/readme_images/profile_screen.jpg)
+
+## Logout Feature 🚪
+
+Users can securely log out from the profile screen. When they tap the logout button, a confirmation dialog appears, asking if they are sure they want to log out. Upon confirmation, the user is signed out and redirected to the login screen.
+
+![logout](assets/readme_images/logout.jpg)
 
