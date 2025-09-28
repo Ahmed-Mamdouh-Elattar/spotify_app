@@ -64,7 +64,7 @@ Example: **Home Feature**
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/spotify-app.git
+   git clone https://github.com/Ahmed-Mamdouh-Elattar/spotify-app.git
    ```
 2. Navigate to the project directory:
    ```bash
