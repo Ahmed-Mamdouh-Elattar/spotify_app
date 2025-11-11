@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:spotify_app/core/configs/app_text_style.dart';
 import 'package:spotify_app/core/utils/app_navigation.dart';
 import 'package:spotify_app/core/widgets/custom_app_bar.dart';
 import 'package:spotify_app/features/home/data/models/record_model/record_model.dart';
