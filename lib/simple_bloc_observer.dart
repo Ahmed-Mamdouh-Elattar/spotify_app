@@ -24,4 +24,10 @@ class SimpleBlocObserver implements BlocObserver {
 
   @override
   void onTransition(Bloc bloc, Transition transition) {}
+
+  @override
+  void onDone(Bloc<dynamic, dynamic> bloc, Object? event,
+      [Object? error, StackTrace? stackTrace]) {
+    log("done : $bloc");
+  }
 }

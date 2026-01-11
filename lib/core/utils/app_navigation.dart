@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppNavigation {
-  static push({required BuildContext context, required Widget view}) {
+  static void push({required BuildContext context, required Widget view}) {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -12,7 +12,7 @@ class AppNavigation {
     );
   }
 
-  static pushReplacement(
+  static void pushReplacement(
       {required BuildContext context, required Widget view}) {
     Navigator.pushReplacement(
       context,
@@ -24,7 +24,7 @@ class AppNavigation {
     );
   }
 
-  static pushAndRemoveAll(
+  static void pushAndRemoveAll(
       {required BuildContext context, required Widget view}) {
     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
       builder: (context) {
@@ -33,11 +33,11 @@ class AppNavigation {
     ), (route) => false);
   }
 
-  static pop(BuildContext context) {
+  static void pop(BuildContext context) {
     Navigator.pop(context);
   }
 
-  static pushWithSlidingAnimation({
+  static void pushWithSlidingAnimation({
     required BuildContext context,
     required Widget view,
     Duration reverseTransitionDuration = const Duration(milliseconds: 200),
@@ -66,7 +66,7 @@ class AppNavigation {
     );
   }
 
-  static pushReplacementWithSlidingAnimation({
+  static void pushReplacementWithSlidingAnimation({
     required BuildContext context,
     required Widget view,
     Duration reverseTransitionDuration = const Duration(milliseconds: 200),
@@ -95,7 +95,7 @@ class AppNavigation {
     );
   }
 
-  static pushAndRemoveAllWithSlidingAnimation({
+  static void pushAndRemoveAllWithSlidingAnimation({
     required BuildContext context,
     required Widget view,
     Duration reverseTransitionDuration = const Duration(milliseconds: 200),
@@ -125,7 +125,7 @@ class AppNavigation {
     );
   }
 
-  static pushWithFadingAnimation({
+  static void pushWithFadingAnimation({
     required BuildContext context,
     required Widget view,
     Duration reverseTransitionDuration = const Duration(milliseconds: 300),
@@ -147,7 +147,7 @@ class AppNavigation {
     );
   }
 
-  static pushReplacementWithFadingAnimation({
+  static void pushReplacementWithFadingAnimation({
     required BuildContext context,
     required Widget view,
     Duration reverseTransitionDuration = const Duration(milliseconds: 300),
@@ -169,7 +169,7 @@ class AppNavigation {
     );
   }
 
-  static pushAndRemoveAllWithFadingAnimation({
+  static void pushAndRemoveAllWithFadingAnimation({
     required BuildContext context,
     required Widget view,
     Duration reverseTransitionDuration = const Duration(milliseconds: 300),
